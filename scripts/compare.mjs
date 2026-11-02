@@ -1,0 +1,12 @@
+import { fromUrl } from 'geotiff';
+import fs from 'node:fs';
+const m = JSON.parse(fs.readFileSync('public/data/manifest.json'));
+const start = performance.now();
+const tiff = await fromUrl(m.sources[0].url);
+const image = await tiff.getImage();
+const data = await image.readRasters();
+console.log(JSON.stringify({ method: 'Direct remote COG via geotiff.js (OpenLayers dependency)', ms: performance.now() - start, width: image.getWidth(), height: image.getHeight(), sample: data[0][0], geoKeys: image.getGeoKeys(), nodata: image.getGDALNoData() }, null, 2));
+const t = performance.now();
+const response = await fetch('http://127.0.0.1:5173/data/elevation.bin');
+const values = new Uint16Array(await response.arrayBuffer());
+console.log({ method: 'Local prepared full four-tile sample', ms: performance.now() - t, bytes: values.byteLength });

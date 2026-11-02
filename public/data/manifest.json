@@ -1,0 +1,108 @@
+{
+  "extent": [
+    944437.2513150347,
+    5998057.601899236,
+    947432.5363256687,
+    6001052.88690987
+  ],
+  "size": 1024,
+  "nodata": 65535,
+  "scale": 0.1,
+  "verticalReference": "LN02 (EPSG:5728)",
+  "sourceResolutionMetres": 2,
+  "sourceBoundsLV95": [
+    2679000.0,
+    1244000.0,
+    2681000.0,
+    1246000.0
+  ],
+  "sources": [
+    {
+      "url": "https://data.geo.admin.ch/ch.swisstopo.swissalti3d/swissalti3d_2026_2679-1244/swissalti3d_2026_2679-1244_2_2056_5728.tif",
+      "bytes": 1331978,
+      "sha256": "bb2073e9180c8ede3684699ed851f569b1bf3e9e0834c6691b7849f19fa643e9",
+      "crs": "EPSG:2056",
+      "resolution": [
+        2.0,
+        2.0
+      ],
+      "nodata": -9999.0,
+      "downloadSeconds": 0.037090761004947126
+    },
+    {
+      "url": "https://data.geo.admin.ch/ch.swisstopo.swissalti3d/swissalti3d_2026_2679-1245/swissalti3d_2026_2679-1245_2_2056_5728.tif",
+      "bytes": 1315622,
+      "sha256": "85a3750bca1145137f3e20cfe7ec093db7e34061b19f97516e049a15c7795b56",
+      "crs": "EPSG:2056",
+      "resolution": [
+        2.0,
+        2.0
+      ],
+      "nodata": -9999.0,
+      "downloadSeconds": 0.007911019958555698
+    },
+    {
+      "url": "https://data.geo.admin.ch/ch.swisstopo.swissalti3d/swissalti3d_2026_2680-1244/swissalti3d_2026_2680-1244_2_2056_5728.tif",
+      "bytes": 1340819,
+      "sha256": "2f4000387bc5c71347f61eb3abee8852cd82b38aba0020427a4ca0810af7ce34",
+      "crs": "EPSG:2056",
+      "resolution": [
+        2.0,
+        2.0
+      ],
+      "nodata": -9999.0,
+      "downloadSeconds": 0.007996288011781871
+    },
+    {
+      "url": "https://data.geo.admin.ch/ch.swisstopo.swissalti3d/swissalti3d_2026_2680-1245/swissalti3d_2026_2680-1245_2_2056_5728.tif",
+      "bytes": 1281848,
+      "sha256": "d897985c25422a48904afa9cfb03815ecd2425b1bdd4653ec471fb0a5a050ccf",
+      "crs": "EPSG:2056",
+      "resolution": [
+        2.0,
+        2.0
+      ],
+      "nodata": -9999.0,
+      "downloadSeconds": 0.006945221975911409
+    }
+  ],
+  "checkpoints": [
+    {
+      "name": "Uetliberg summit",
+      "lon": 8.4914,
+      "lat": 47.3495,
+      "sourceMetres": 869.7724609375,
+      "preparedMetres": 869.8,
+      "pixel": [
+        280,
+        596
+      ]
+    },
+    {
+      "name": "Eastern slope",
+      "lon": 8.499,
+      "lat": 47.351,
+      "sourceMetres": 603.1046752929688,
+      "preparedMetres": 603.0,
+      "pixel": [
+        569,
+        511
+      ]
+    },
+    {
+      "name": "Albisguetli",
+      "lon": 8.509,
+      "lat": 47.352,
+      "sourceMetres": 493.6121826171875,
+      "preparedMetres": 493.6,
+      "pixel": [
+        950,
+        455
+      ]
+    }
+  ],
+  "minMetres": 444.33135986328125,
+  "maxMetres": 871.9315185546875,
+  "validPixels": 1017927,
+  "preparedBytes": 2097152
+}
