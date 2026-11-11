@@ -4,3 +4,7 @@ dist/
 .venv/
 data/source/
 test-results/
+
+# Reproducible prepared evaluation assets; pinned inventories live in scripts/prepared.
+public/prepared/
+__pycache__/

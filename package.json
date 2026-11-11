@@ -1,1 +1,38 @@
-{"name":"swiss-fog-map","version":"0.1.0","private":true,"type":"module","scripts":{"dev":"vite --host 127.0.0.1","build":"tsc --noEmit && vite build","preview":"vite preview --host 127.0.0.1","test":"node tests/check.mjs"},"dependencies":{"ol":"10.11.0","react":"19.3.1","react-dom":"19.3.1"},"devDependencies":{"@types/react":"19.2.14","@types/react-dom":"19.2.3","playwright":"1.62.1","typescript":"5.9.3","vite":"8.3.5"}}
+{
+  "name": "swiss-fog-map",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "tsc --noEmit && node scripts/verify_national_assets.mjs && vite build",
+    "preview": "vite preview --host 127.0.0.1",
+    "test": "node tests/nationwide.mjs && node tests/loading.mjs && node tests/prepared.mjs",
+    "test:loading-browser": "node tests/loading-browser.cjs",
+    "test:retry-browser": "node tests/retry-browser.cjs",
+    "test:browser": "node tests/nationwide-browser.cjs",
+    "test:worker": "npm run build && node tests/worker-failures.mjs",
+    "test:live": "npm run build && node tests/live-elevation.mjs",
+    "test:legacy": "node tests/check.mjs && node tests/region.mjs",
+    "test:prepared": "node tests/prepared.mjs",
+    "test:prepared-browser": "node tests/prepared-browser.cjs",
+    "benchmark:prepared": "node scripts/benchmark_prepared.cjs",
+    "test:navigation-browser": "node tests/navigation-browser.cjs && node tests/navigation-stability.cjs",
+    "test:basemap-browser": "node tests/basemap-browser.cjs",
+    "test:national-tiles-browser": "node tests/national-tiles-browser.cjs"
+  },
+  "dependencies": {
+    "geotiff": "3.1.0-beta.0",
+    "ol": "10.11.0",
+    "proj4": "2.22.0",
+    "react": "19.3.1",
+    "react-dom": "19.3.1"
+  },
+  "devDependencies": {
+    "@types/react": "19.2.14",
+    "@types/react-dom": "19.2.3",
+    "playwright": "1.62.1",
+    "typescript": "5.9.3",
+    "vite": "8.3.5"
+  }
+}

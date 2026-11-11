@@ -1,0 +1,46 @@
+const {chromium}=require('playwright');
+const assert=require('node:assert/strict');
+const fs=require('node:fs');
+(async()=>{
+ const browser=await chromium.launch({headless:true, ...(process.env.BROWSER_PATH ? {executablePath:process.env.BROWSER_PATH} : {})});
+ try {
+  const context=await browser.newContext({viewport:{width:1400,height:950}}), page=await context.newPage();
+  const errors=[];page.on('pageerror',e=>errors.push(e.message));
+  await page.goto((process.env.MAP_URL || 'http://127.0.0.1:5174')+'/?debugTiles&prepared=off');
+  const ready=async()=>{try{await page.waitForFunction(()=>document.querySelector('[role=status]').textContent.includes('· ready'),{},{timeout:90000});}catch(error){console.log(await page.getByRole('status').innerText(),await page.locator('.map').getAttribute('data-terrain-diagnostics'));throw error;}};
+  const stats=async()=>JSON.parse(await page.locator('.map').getAttribute('data-terrain-diagnostics'));
+  await page.waitForFunction(()=>JSON.parse(document.querySelector('.map').getAttribute('data-terrain-diagnostics')).pending.length>0);
+  await page.getByTitle('Zoom in',{exact:true}).click();
+  await ready(); console.log('National view ready after zooming during initial loading');
+  assert.match(await page.getByRole('status').innerText(),/swissALTIRegio/);
+  await page.getByRole('combobox').selectOption('Fribourg');
+  await page.waitForFunction(()=>document.querySelector('[role=status]').textContent.includes('swissALTI3D'));await ready();
+  assert.match(await page.getByRole('status').innerText(),/swissALTI3D/);
+  console.log('Detail view ready');
+  const before=await stats();
+  for(const value of ['0','650','991','5000'])await page.getByRole('spinbutton').fill(value);
+  await page.getByRole('checkbox').uncheck();await page.getByRole('checkbox').check();
+  await page.waitForTimeout(2000);
+  assert.deepEqual((await stats()).starts,before.starts,'Stationary slider/toggle must not reload tiles');
+  await page.getByTitle('Zoom out',{exact:true}).click();await page.waitForTimeout(500);await ready();
+  await page.getByTitle('Zoom in',{exact:true}).click();await page.waitForTimeout(500);await ready();
+  console.log('Zoom round trip ready');
+  const settled=await stats();await page.waitForTimeout(3000);
+  assert.deepEqual((await stats()).starts,settled.starts,'Stationary viewport must settle without cache thrashing');
+  await page.getByRole('spinbutton').fill('650');
+  fs.mkdirSync('test-results',{recursive:true});await page.screenshot({path:'test-results/nationwide-detail.png'});
+  await page.setViewportSize({width:390,height:844});await ready();
+  assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
+  await page.screenshot({path:'test-results/nationwide-phone.png',fullPage:true});
+  await page.evaluate(async () => {for (const key of await caches.keys()) if (key.startsWith('terrain-samples-')) await caches.delete(key);});
+  await context.route('https://data.geo.admin.ch/**',route=>route.abort());
+  await page.getByRole('button',{name:'Retry elevation',exact:true}).click();
+  await page.waitForFunction(()=>document.querySelector('[role=status]').textContent.includes('contain unavailable'),{},{timeout:60000});
+  await page.getByRole('checkbox').uncheck();
+  assert.match(await page.getByRole('status').innerText(),/unavailable/);
+  await context.unroute('https://data.geo.admin.ch/**');
+  await page.getByRole('button',{name:'Retry elevation',exact:true}).click();await ready();
+  assert.deepEqual(errors,[]);
+  console.log('Browser checks passed: source switch, stationary cache, slider/toggle, phone layout, failure and retry.');
+ } finally {await browser.close();}
+})().catch(e=>{console.error(e);process.exit(1)});

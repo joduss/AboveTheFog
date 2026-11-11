@@ -1,0 +1,18 @@
+import assert from 'node:assert/strict';
+import {tileExtent, overviewIndex, validHeight, classify, selectDetailAssets, NODATA, missingTile} from '../src/terrain/math.ts';
+assert.equal(overviewIndex([55000,13750,6875,3438,1719,860],55000,10,420),4);
+assert.equal(overviewIndex([55000,13750,6875,3438,1719,860],55000,10,20),0);
+assert.equal(overviewIndex([55000,13750,6875,3438,1719,860],55000,10,70),1);
+assert.equal(validHeight(3.3999999521443642e38,3.3999999521443642e38),false);
+for(const n of [NaN,Infinity,-9999,NODATA]) assert.equal(validHeight(n,-9999),false);
+assert.equal(validHeight(0,-9999),true);
+assert.equal(classify(650,650),'clear');
+assert.equal(classify(649,650),'dim');
+assert.equal(classify(649,650,false),'clear');
+assert.equal(classify(NODATA,650,false),'missing');
+assert(missingTile().every(v=>v===NODATA));
+assert.equal(tileExtent(15,17000,11600)[2],tileExtent(15,17001,11600)[0]);
+const feature=(year,resolution=2)=>({id:`swissalti3d_${year}_2578-1184`,properties:{datetime:`${year}-01-01`},assets:{[`swissalti3d_${year}_2578-1184_${resolution}_2056_5728.tif`]:{href:`https://data.geo.admin.ch/${year}.tif`}}});
+const selected=selectDetailAssets([feature(2021),feature(2025,0.5),feature(2024),feature(2019)]);
+assert.equal(selected.size,1);assert.equal(selected.get('2578/1184').date,'2024-01-01');
+console.log('Nationwide checks passed: overview selection, validity, equality, missing-data toggle, seams and latest eligible source selection.');

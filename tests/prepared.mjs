@@ -1,0 +1,16 @@
+import assert from 'node:assert/strict';
+import {decodeBands, BAND_NODATA} from '../src/terrain/bands.ts';
+import {NODATA, classify} from '../src/terrain/math.ts';
+const bytes=new ArrayBuffer(131072), view=new DataView(bytes);
+for(let i=0;i<65536;i++)view.setInt16(i*2,BAND_NODATA,true);
+for(const [i,value] of [65,66,-1,0,999].entries())view.setInt16(i*2,value,true);
+const result=decodeBands(bytes);
+assert.deepEqual([...result.data.slice(0,6)],[650,660,-10,0,9990,NODATA]);
+assert.equal(result.missing,65531);
+assert.equal(classify(result.data[0],660),'dim');
+assert.equal(classify(result.data[1],660),'clear');
+assert.equal(classify(result.data[2],0),'dim');
+assert.equal(classify(result.data[5],660,false),'missing');
+assert.throws(()=>decodeBands(new ArrayBuffer(3)),/length/);
+view.setInt16(0,32767,true);assert.throws(()=>decodeBands(bytes),/Invalid/);
+console.log('Prepared codec: signed bands, little endian, equality, negative heights, NoData and invalid payloads passed.');
