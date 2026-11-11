@@ -1,7 +1,8 @@
 import ImageLayer from 'ol/layer/Image';
 import ImageCanvas from 'ol/source/ImageCanvas';
 import {createXYZ} from 'ol/tilegrid';
-import {TerrainWorkers, type TileResult} from './workerPool';
+import {ComparisonWorkers} from './comparisonWorkers';
+import type {TerrainWorkers, TileResult} from './workerPool';
 import {readTile, writeTile} from './tileCache';
 import {NODATA, type Bounds} from './math';
 import {loadOverview, overviewUrl} from './overview';
@@ -51,7 +52,7 @@ export function createPreview(changed: () => void) {
       // Retain resident previews and source readers across neighbouring pans.
       const signal = controller.signal, epoch = generation;
       if (preparedMode === 'off') {
-        workers ??= new TerrainWorkers(1);
+        workers ??= new ComparisonWorkers!(1);
         workers.prioritize(z,range.minX-1,range.minY-1,range.maxX+1,range.maxY+1);
       }
       const jobs: {x:number;y:number}[] = [];

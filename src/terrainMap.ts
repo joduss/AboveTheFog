@@ -10,6 +10,7 @@ import View from 'ol/View.js';
 import {createBasemap, watchBasemap} from './terrain/basemap';
 import {overviewUrl, loadOverview} from './terrain/overview';
 import {createNationalTerrain, NATIONAL_DETAIL_ZOOM, NATIONAL_MAX_ZOOM} from './terrain/national';
+import {getCacheKey, newTileRepresentationLookup} from 'ol/renderer/webgl/TileLayerBase.js';
 import WebGLTile from 'ol/layer/WebGLTile.js';
 import VectorLayer from 'ol/layer/Vector.js';
 import VectorSource from 'ol/source/Vector.js';
@@ -22,7 +23,8 @@ import {defaults} from 'ol/control/defaults.js';
 import ScaleLine from 'ol/control/ScaleLine.js';
 import {getIntersection, isEmpty} from 'ol/extent.js';
 import {fromLonLat, transformExtent} from 'ol/proj.js';
-import {TerrainWorkers, type TileResult} from './terrain/workerPool';
+import {ComparisonWorkers} from './terrain/comparisonWorkers';
+import type {TerrainWorkers, TileResult} from './terrain/workerPool';
 import {DETAIL_ZOOM, MAX_ZOOM, NODATA, SWISS_BOUNDS, WORLD, missingTile} from './terrain/math';
 
 interface Callbacks {
@@ -55,28 +57,54 @@ export function createTerrainMap(target: HTMLElement, callbacks: Callbacks) {
   let runtimeView: Parameters<TerrainWorkers['prioritize']> = [-1,0,0,0,0];
   function runtimeWorkers() {
     if (!workers) {
-      workers = new TerrainWorkers();
+      workers = new ComparisonWorkers!();
       workers.prioritize(...runtimeView);
     }
     return workers;
   }
   let elevation: WebGLTile | undefined;
   type Info = Omit<TileResult, 'data'> & {signal: AbortSignal};
-  const loaded = new globalThis.Map<string, {tile: {getState: () => number}; result: Info}>();
+  const loaded = new globalThis.Map<string, {tile: WeakRef<{getState: () => number}>; result: Info; textureKey: string}>();
+  function textureReady(record: ReturnType<typeof loaded.get>) {
+    if (!record || !elevation?.hasRenderer()) return false;
+    // OpenLayers 10 stores uploaded tiles in this cache. peek() observes
+    // residency without protecting offscreen entries from LRU eviction.
+    const texture = elevation.getRenderer()?.['tileRepresentationCache'].peek(record.textureKey);
+    return !!texture?.ready && texture.tile===record.tile.deref();
+  }
   const completed = new globalThis.Map<string, Info>();
   const failed = new Set<string>();
   const pending = new Set<string>();
   const cancelled = new Set<string>();
   let epoch = 0, bypassCache = false;
   let loadController = new AbortController();
-  const resident = new ResidentTiles();
+  const resident = new ResidentTiles(nationalMode ? 8 : 64);
+  let previousRange: [number,number,number,number,number] | undefined;
   let prefetchQueue: [number,number,number][] = [], prefetchActive = 0, prefetchTimer = 0;
   const debugTiles = new URLSearchParams(location.search).has('debugTiles');
+  if (debugTiles) target.addEventListener('terrain-report', () => {
+    const buffers = new Set<ArrayBufferLike>();
+    resident.forEachBuffer(buffer=>buffers.add(buffer));
+    let textureBytes=0;
+    if (elevation?.hasRenderer()) elevation.getRenderer()?.['tileRepresentationCache'].forEach(entry=>{
+      const tile=entry.tile;
+      if (!('getData' in tile)) return;
+      const data=tile.getData();
+      if (ArrayBuffer.isView(data)) {
+        buffers.add(data.buffer);
+        if (entry.ready) textureBytes+=data.byteLength;
+      }
+    });
+    const report=national.diagnostics();
+    const tileBytes=[...buffers].reduce((sum,buffer)=>sum+buffer.byteLength,0);
+    target.dataset.terrainReport=JSON.stringify({...report,tileBytes,textureBytes,
+      trackedBytes:tileBytes+report.native.squareBytes+report.native.staging+report.compressed});
+  }, {signal:controller.signal});
   const starts: Record<string, number> = {};
   let viewProgress: {centerKey: string; centerSource?: string; loading: number} | undefined;
-  const diagnostic = () => {if (debugTiles) target.setAttribute('data-terrain-diagnostics', JSON.stringify({zoom: map.getView().getZoom(), size: map.getSize(), center: map.getView().getCenter(), resolution: map.getView().getResolution(), viewProgress, ready: [...loaded].filter(([,record])=>record.tile.getState()===2).map(([key])=>key), starts, lookAhead: prefetchActive+prefetchQueue.length, loaded: loaded.size, pending: [...pending], failed: [...failed]}));};
+  const diagnostic = () => {if (debugTiles) target.setAttribute('data-terrain-diagnostics', JSON.stringify({zoom: map.getView().getZoom(), size: map.getSize(), center: map.getView().getCenter(), resolution: map.getView().getResolution(), viewProgress, ready: [...loaded].filter(([,record])=>textureReady(record)).map(([key])=>key), starts, lookAhead: prefetchActive+prefetchQueue.length, loaded: loaded.size, pending: [...pending], failed: [...failed]}));};
 
-  const vectors = preparedMode === 'vector' ? createPreparedVectors() : undefined;
+  const vectors = (import.meta.env.DEV || import.meta.env.MODE==='comparison') && preparedMode === 'vector' ? createPreparedVectors() : undefined;
   if (vectors) map.addLayer(vectors.layer);
   const preview = createPreview(refresh);
   preview.layer.setExtent(extent);
@@ -99,7 +127,7 @@ export function createTerrainMap(target: HTMLElement, callbacks: Callbacks) {
         for (let x = range.minX; x <= range.maxX; x++) for (let y = range.minY; y <= range.maxY; y++) {
           visibleTiles++; if(preparedArea(z,x,y)) preparedVisible++;
           const key = `${z}/${x}/${y}`, record = loaded.get(key);
-          if (record && record.tile.getState() === 2) {
+          if (record && textureReady(record)) {
             const clipped = getIntersection(grid.getTileCoordExtent([z, x, y]), extent);
             holes.push(fromExtent(clipped).getCoordinates()[0].slice().reverse()); keys.push(key);
             detailed.push(clipped as Bounds);
@@ -113,9 +141,9 @@ export function createTerrainMap(target: HTMLElement, callbacks: Callbacks) {
             let parent;
             for(let parentZ=z-1;parentZ>=7;parentZ--) {
               const scale=2**(z-parentZ), candidate=loaded.get(`${parentZ}/${Math.floor(x/scale)}/${Math.floor(y/scale)}`);
-              if(candidate?.tile.getState()===2 && !candidate.result.failures) {parent=candidate;break;}
+              if(candidate && textureReady(candidate) && !candidate.result.failures) {parent=candidate;break;}
             }
-            if(!vectors && parent?.tile.getState()===2 && !parent.result.failures) {
+            if(!vectors && parent && textureReady(parent) && !parent.result.failures) {
               holes.push(fromExtent(getIntersection(tileBounds,extent)).getCoordinates()[0].slice().reverse());keys.push(`parent/${key}`);detailed.push(getIntersection(tileBounds,extent) as Bounds);parents++;
             } else if (!preparedArea(z,x,y) && preview.covers(tileBounds)) {
               holes.push(fromExtent(getIntersection(tileBounds, extent)).getCoordinates()[0].slice().reverse()); keys.push(`preview/${key}`); previews++;
@@ -125,7 +153,7 @@ export function createTerrainMap(target: HTMLElement, callbacks: Callbacks) {
       }
       for(const [key,record] of loaded) {
         const coord=key.split('/').map(Number) as [number,number,number];
-        if(coord[0]===z && record.tile.getState()===2 && !keys.includes(key)) {
+        if(coord[0]===z && textureReady(record) && !keys.includes(key)) {
           const b=getIntersection(grid.getTileCoordExtent(coord),extent);
           if(!isEmpty(b)) {holes.push(fromExtent(b).getCoordinates()[0].slice().reverse());keys.push(key);detailed.push(b as Bounds);}
         }
@@ -167,9 +195,28 @@ export function createTerrainMap(target: HTMLElement, callbacks: Callbacks) {
     const range = grid.getTileRangeForExtentAndZ(bounds,z);
     runtimeView = [z,range.minX-1,range.minY-1,range.maxX+1,range.maxY+1];
     workers?.prioritize(...runtimeView);
-    // Nationwide packets already contain neighbouring tiles. A pan can use
-    // those bytes immediately without competing with speculative source work.
-    if (nationalMode) {refresh(); return;}
+    if (nationalMode) {
+      const next: typeof previousRange = [z,range.minX,range.minY,range.maxX,range.maxY];
+      if (previousRange && next.every((n,i) => n===previousRange![i])) return;
+      const previous = previousRange;
+      previousRange = next;
+      prefetchQueue = [];
+      clearTimeout(prefetchTimer);
+      if (previous?.[0]===z && z>=NATIONAL_DETAIL_ZOOM) {
+        const dx = range.minX+range.maxX-previous[1]-previous[3];
+        const dy = range.minY+range.maxY-previous[2]-previous[4];
+        if (dx && Math.abs(dx)>=Math.abs(dy)) {
+          const x = dx>0 ? range.maxX+1 : range.minX-1;
+          for (let y=range.minY; y<=range.maxY; y++) prefetchQueue.push([z,x,y]);
+        } else if (dy) {
+          const y = dy>0 ? range.maxY+1 : range.minY-1;
+          for (let x=range.minX; x<=range.maxX; x++) prefetchQueue.push([z,x,y]);
+        }
+        prefetchTimer = window.setTimeout(prefetch, 50);
+      }
+      refresh();
+      return;
+    }
     // Skip source-based previews when every visible tile has prepared coverage.
     let allPrepared = true;
     for (let x=range.minX;x<=range.maxX;x++) for(let y=range.minY;y<=range.maxY;y++) if(!preparedArea(z,x,y)) allPrepared=false;
@@ -193,16 +240,25 @@ export function createTerrainMap(target: HTMLElement, callbacks: Callbacks) {
       writeTile(cacheKey,result);return result;
     });
   }
+  function nationalResult(z: number, x: number, y: number) {
+    return resident.load(`national/${z}/${x}/${y}`, () => national.load(z,x,y,loadController.signal));
+  }
   function prefetch() {
     if(disposed || fatal) return;
-    while(prefetchActive<2 && prefetchQueue.length) {
+    if (nationalMode && pending.size && prefetchQueue.length) {
+      clearTimeout(prefetchTimer);
+      prefetchTimer = window.setTimeout(prefetch, 50);
+      return;
+    }
+    while(prefetchActive<(nationalMode ? 1 : 2) && prefetchQueue.length) {
       const [z,x,y]=prefetchQueue.shift()!;prefetchActive++;
-      void preparedResult(z,x,y).catch(()=>{}).finally(()=>{prefetchActive--;prefetch();diagnostic();});
+      void (nationalMode ? nationalResult(z,x,y) : preparedResult(z,x,y)).catch(()=>{}).finally(()=>{prefetchActive--;prefetch();diagnostic();});
     }
   }
   map.on('moveend', currentView);
+  if (nationalMode) map.getView().on(['change:center','change:resolution'], currentView);
 
-  map.on('rendercomplete', refresh);
+  map.on('postrender', refresh);
   const source = new DataTile({
     projection: 'EPSG:3857', bandCount: 1, interpolate: false, wrapX: false, tileGrid: grid, zDirection: -1, transition: 0,
     loader: async (z, x, y, options) => {
@@ -215,7 +271,7 @@ export function createTerrainMap(target: HTMLElement, callbacks: Callbacks) {
         const prepared = preparedArea(z,x,y);
         const overview = preparedMode !== 'off' && overviewUrl(z,x,y);
         if (overview) result = await retryTile(() => loadOverview(overview, signal), signal);
-        else if (nationalMode) result = await retryTile(() => national.load(z,x,y,signal,bypassCache), signal);
+        else if (nationalMode) result = await retryTile(() => nationalResult(z,x,y), signal);
         else if(prepared && !vectors) result=await retryTile(()=>preparedResult(z,x,y), signal);
         else {
           const cached=bypassCache || (prepared && vectors)?undefined:await readTile(key);
@@ -239,7 +295,7 @@ export function createTerrainMap(target: HTMLElement, callbacks: Callbacks) {
   source.on('tileloadend', event => {
     if (disposed) return;
     const key = event.tile.getTileCoord().join('/'), result = completed.get(key);
-    if (result) {loaded.set(key, {tile: event.tile, result}); completed.delete(key);}
+    if (result) {loaded.set(key, {tile: new WeakRef(event.tile), textureKey: getCacheKey(source,event.tile.getTileCoord()), result}); completed.delete(key);}
     while (loaded.size > 256) loaded.delete(loaded.keys().next().value!);
     diagnostic(); refresh();
   });
@@ -251,17 +307,82 @@ export function createTerrainMap(target: HTMLElement, callbacks: Callbacks) {
     const canvas = document.createElement('canvas'), gl = canvas.getContext('webgl');
     if (!gl) throw Error('WebGL unavailable');
     gl.getExtension('WEBGL_lose_context')?.loseContext();
-    elevation = new WebGLTile({source, extent, cacheSize: 128, preload: 0, style: {
+    elevation = new WebGLTile({source, extent, cacheSize: nationalMode ? 116 : 128, preload: 0, style: {
       variables: {altitude, enabled: 1},
       color: ['case', ['==', ['band', 1], NODATA], [188, 143, 63, 0.5],
         ['==', ['var', 'enabled'], 0], [0, 0, 0, 0],
         ['<', ['band', 1], ['var', 'altitude']], [36, 57, 72, 0.36], [0, 0, 0, 0]],
     }});
+    if (nationalMode) elevation.on('prerender', event => {
+      const state = event.frameState;
+      if (!state?.extent || grid.getZForResolution(state.viewState.resolution,-1)<=8) return;
+      const bounds = getIntersection(state.extent,extent);
+      if (!isEmpty(bounds)) {
+        // Put the covering overview in the same renderer cache and tile queue.
+        // OpenLayers draws cached ancestors only where a child texture is pending.
+        elevation!.getRenderer()!.enqueueTiles(state,bounds,8,newTileRepresentationLookup(),0);
+      }
+    });
+    if (debugTiles) map.on('precompose', event => {
+      const probe = target.dataset.edgeCoordinate;
+      const state = event.frameState;
+      if (!probe || !state?.extent || target.dataset.edgeExposed) return;
+      const [east,north] = probe.split(',').map(Number);
+      const [left,bottom,right,top] = state.extent;
+      if (east>=left && east<right && north>bottom && north<=top) {
+        target.dataset.edgeExposed = String(performance.now());
+      }
+    });
+    if (debugTiles) elevation.on('postrender', event => {
+      const probe = target.dataset.edgeCoordinate;
+      const state = event.frameState;
+      const gl = event.context;
+      if (!probe || !state || !(gl instanceof WebGLRenderingContext || gl instanceof WebGL2RenderingContext)) return;
+      const [east, north] = probe.split(',').map(Number);
+      const [a,b,c,d,tx,ty] = state.coordinateToPixelTransform;
+      const pixel = [a*east+c*north+tx,b*east+d*north+ty];
+      if (pixel[0]<0 || pixel[1]<0 || pixel[0]>=state.size[0] || pixel[1]>=state.size[1]) return;
+      const rgba = new Uint8Array(4);
+      const ratio = state.pixelRatio;
+      gl.readPixels(Math.floor(pixel[0]*ratio),gl.drawingBufferHeight-1-Math.floor(pixel[1]*ratio),
+        1,1,gl.RGBA,gl.UNSIGNED_BYTE,rgba);
+      const sample = elevation?.getData(pixel);
+      const imagery = base.getData(pixel);
+      const imageGrid = base.getSource()!.getTileGridForProjection(state.viewState.projection);
+      const imageZ = imageGrid.getZForResolution(state.viewState.resolution);
+      const imageKey = imageGrid.getTileCoordForCoordAndZ([east,north],imageZ).join('/');
+      const fullImagery = base.getRenderer()?.['renderedTiles'].some(tile => tile.tileCoord.join('/')===imageKey);
+      const z = grid.getZForResolution(state.viewState.resolution,-1);
+      const range = grid.getTileRangeForExtentAndZ(getIntersection(state.extent!,extent),z);
+      const oldRight = Number(target.dataset.previousRight);
+      let stripReady = true, viewportReady = true;
+      for (let x=range.minX; x<=range.maxX; x++) for (let y=range.minY; y<=range.maxY; y++) {
+        const record = loaded.get(`${z}/${x}/${y}`);
+        if (textureReady(record) && !record?.result.failures) continue;
+        viewportReady = false;
+        if (grid.getTileCoordExtent([z,x,y])[2]>oldRight) stripReady = false;
+      }
+      const key = grid.getTileCoordForCoordAndZ([east,north],z).join('/');
+      target.dispatchEvent(new CustomEvent('terrain-edge-frame', {detail: {
+        time: performance.now(), stripReady, viewportReady, rgba: [...rgba], key, fineLoaded: textureReady(loaded.get(key)),
+        height: sample && !(sample instanceof DataView) ? sample[0] : null,
+        imagery: fullImagery && !!imagery && !(imagery instanceof DataView) && imagery[3]===255,
+      }}));
+    });
     map.getLayers().insertAt(2, elevation);
   } catch {fail();}
   const initialPlace = new URLSearchParams(location.search).get('place');
   if(initialPlace && PLACES[initialPlace]) {map.getView().setCenter(fromLonLat(PLACES[initialPlace])); map.getView().setZoom(Number(new URLSearchParams(location.search).get('zoom') ?? 15));}
   else map.getView().fit(extent, {padding: [30, 30, 30, 30]});
+  if (debugTiles) {
+    const start = map.getView().getCenter()!.slice();
+    if (new URLSearchParams(location.search).has('centerProbe')) target.dataset.edgeCoordinate=start.join(',');
+    target.addEventListener('terrain-reset-trace', () => {
+      map.getView().cancelAnimations();
+      map.getView().setCenter(start.slice());
+      map.renderSync();
+    }, {signal: controller.signal});
+  }
   currentView();
   map.on('singleclick', async event => {
     const z = grid.getZForResolution(map.getView().getResolution()!, -1);
@@ -269,7 +390,7 @@ export function createTerrainMap(target: HTMLElement, callbacks: Callbacks) {
     if(vectors && preparedArea(...coord as [number,number,number])) {callbacks.probe(await vectors.probe(event.pixel)); return;}
     const key = coord.join('/');
     const record = loaded.get(key);
-    const data = !fatal && record && record.tile.getState() === 2 ? elevation?.getData(event.pixel) : null;
+    const data = !fatal && record && textureReady(record) ? elevation?.getData(event.pixel) : null;
     if (!data || data instanceof DataView || data[0] === NODATA || !Number.isFinite(data[0])) return callbacks.probe('Elevation unavailable here.');
     if (nationalMode && z >= 9) {
       const source = z >= NATIONAL_DETAIL_ZOOM ? '4 m swissALTI3D grid' : 'swissALTIRegio overview';
@@ -288,6 +409,6 @@ export function createTerrainMap(target: HTMLElement, callbacks: Callbacks) {
       epoch++; loadController.abort(); loadController = new AbortController(); bypassCache = true; national.clear(); resident.clear();prefetchQueue=[]; vectors?.retry(); preview.reset(true); workers?.dispose(); elevation?.setSource(null); elevation?.setSource(source); workers = undefined; loaded.clear(); completed.clear(); failed.clear(); pending.clear();
       signature = ''; unknown.setGeometry(new Polygon([world])); source.refresh(); currentView();
     },
-    dispose() {disposed = true; national.clear(); background.dispose(); clearTimeout(prefetchTimer);prefetchQueue=[];resident.clear();vectors?.dispose(); preview.dispose(); controller.abort(); workers?.dispose(); cancelAnimationFrame(frame); target.removeEventListener('webglcontextlost', fail, true); map.dispose();},
+    dispose() {disposed = true; loadController.abort(); national.clear(); background.dispose(); clearTimeout(prefetchTimer);prefetchQueue=[];resident.clear();vectors?.dispose(); preview.dispose(); controller.abort(); workers?.dispose(); cancelAnimationFrame(frame); target.removeEventListener('webglcontextlost', fail, true); map.dispose();},
   };
 }

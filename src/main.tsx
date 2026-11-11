@@ -25,7 +25,7 @@ function App() {
 
   return <main>
     <header>
-      <div className="brand"><span className="mark">≋</span><div><h1>Swiss Fog Map</h1><p>Altitude laboratory</p></div></div>
+      <div className="brand"><span className="mark">≋</span><div><h1>AboveTheFog</h1><p>Altitude laboratory</p></div></div>
       <span className="badge">SWITZERLAND</span>
     </header>
     <section className="workspace">
@@ -59,7 +59,7 @@ function App() {
         </label>
         <details>
           <summary>About nationwide elevation</summary>
-          <p>Wide views use nationwide swissALTIRegio overviews. At the 1,000 m scale and closer, the map uses swissALTI3D sampled on a 4 m grid across its Swiss coverage. Elevation tiles are prepared in advance. The 10 m bands follow the altitude control: a height in [650,660) dims at 660 m, while [660,670) stays clear. Close zooms magnify the finest prepared tiles.</p>
+          <p>Wide views use nationwide swissALTIRegio overviews. At the 1,000 m scale and closer, the map uses swissALTI3D sampled on a 4 m grid across its Swiss coverage. Elevation tiles are prepared in advance. The 10 m bands follow the altitude control: a height in [650,660) dims at 660 m, while [660,670) stays clear. Close zooms use nearest-neighbour terrain samples.</p>
           <p>The overlay compares sampled heights with your altitude. Coarse views are approximate: small valleys and ridges can disappear, and boundaries can change as you zoom. A clear sample does not mean every point around it is above the threshold.</p>
           <p>Amber marks loading, missing or failed data, even with dimming off. Heights use LN02 within Switzerland; surrounding countries may use different vertical references. Coverage extends over a rectangular area around Switzerland.</p>
         </details>

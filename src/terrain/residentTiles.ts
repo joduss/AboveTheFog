@@ -23,5 +23,8 @@ export class ResidentTiles {
     this.pending.set(key,job);
     return job;
   }
+  forEachBuffer(visit: (buffer:ArrayBufferLike)=>void) {
+    this.ready.forEach(result=>visit(result.data.buffer));
+  }
   clear() {this.generation++;this.ready.clear();this.pending.clear();}
 }

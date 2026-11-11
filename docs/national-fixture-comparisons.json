@@ -1,0 +1,750 @@
+[
+  {
+    "configuration": "pan-layout-1",
+    "build": "/pan/assets/index-Cl8-KqSC.js",
+    "dataset": "c51c83cac46dda58122e0a4d985177c5c76ff9752e178bea547175bd87237f32",
+    "zoom": 16,
+    "state": "cold",
+    "hops": 4,
+    "fineFogMs": [
+      10,
+      8,
+      56,
+      6
+    ],
+    "combinedMs": [
+      34,
+      42,
+      72,
+      6
+    ],
+    "transferBytes": 134402,
+    "maxFrameIntervalP95Ms": 16.8
+  },
+  {
+    "configuration": "pan-layout-1",
+    "build": "/pan/assets/index-Cl8-KqSC.js",
+    "dataset": "c51c83cac46dda58122e0a4d985177c5c76ff9752e178bea547175bd87237f32",
+    "zoom": 16,
+    "state": "http-warm",
+    "hops": 4,
+    "fineFogMs": [
+      10,
+      9,
+      58,
+      8
+    ],
+    "combinedMs": [
+      10,
+      9,
+      58,
+      8
+    ],
+    "transferBytes": 8700,
+    "maxFrameIntervalP95Ms": 16.8
+  },
+  {
+    "configuration": "pan-layout-1",
+    "build": "/pan/assets/index-Cl8-KqSC.js",
+    "dataset": "c51c83cac46dda58122e0a4d985177c5c76ff9752e178bea547175bd87237f32",
+    "zoom": 16,
+    "state": "decoded-revisit",
+    "hops": 4,
+    "fineFogMs": [
+      7,
+      5,
+      6,
+      6
+    ],
+    "combinedMs": [
+      7,
+      5,
+      6,
+      6
+    ],
+    "transferBytes": 0,
+    "maxFrameIntervalP95Ms": 16.7
+  },
+  {
+    "configuration": "pan-layout-2",
+    "build": "/pan/assets/index-43ECd7NO.js",
+    "dataset": "c51c83cac46dda58122e0a4d985177c5c76ff9752e178bea547175bd87237f32",
+    "zoom": 16,
+    "state": "cold",
+    "hops": 4,
+    "fineFogMs": [
+      16,
+      8,
+      57,
+      6
+    ],
+    "combinedMs": [
+      53,
+      42,
+      72,
+      6
+    ],
+    "transferBytes": 134560,
+    "maxFrameIntervalP95Ms": 16.8
+  },
+  {
+    "configuration": "pan-layout-2",
+    "build": "/pan/assets/index-43ECd7NO.js",
+    "dataset": "c51c83cac46dda58122e0a4d985177c5c76ff9752e178bea547175bd87237f32",
+    "zoom": 16,
+    "state": "http-warm",
+    "hops": 4,
+    "fineFogMs": [
+      24,
+      9,
+      58,
+      7
+    ],
+    "combinedMs": [
+      24,
+      9,
+      58,
+      7
+    ],
+    "transferBytes": 3000,
+    "maxFrameIntervalP95Ms": 16.8
+  },
+  {
+    "configuration": "pan-layout-2",
+    "build": "/pan/assets/index-43ECd7NO.js",
+    "dataset": "c51c83cac46dda58122e0a4d985177c5c76ff9752e178bea547175bd87237f32",
+    "zoom": 16,
+    "state": "decoded-revisit",
+    "hops": 4,
+    "fineFogMs": [
+      6,
+      6,
+      5,
+      6
+    ],
+    "combinedMs": [
+      6,
+      6,
+      5,
+      6
+    ],
+    "transferBytes": 0,
+    "maxFrameIntervalP95Ms": 16.8
+  },
+  {
+    "configuration": "pan-layout-8",
+    "build": "/pan/assets/index-Dl8z-Hw3.js",
+    "dataset": "c51c83cac46dda58122e0a4d985177c5c76ff9752e178bea547175bd87237f32",
+    "zoom": 16,
+    "state": "cold",
+    "hops": 4,
+    "fineFogMs": [
+      23,
+      13,
+      8,
+      6
+    ],
+    "combinedMs": [
+      23,
+      61,
+      72,
+      6
+    ],
+    "transferBytes": 330266,
+    "maxFrameIntervalP95Ms": 16.8
+  },
+  {
+    "configuration": "pan-layout-8",
+    "build": "/pan/assets/index-Dl8z-Hw3.js",
+    "dataset": "c51c83cac46dda58122e0a4d985177c5c76ff9752e178bea547175bd87237f32",
+    "zoom": 16,
+    "state": "http-warm",
+    "hops": 4,
+    "fineFogMs": [
+      10,
+      9,
+      10,
+      6
+    ],
+    "combinedMs": [
+      10,
+      9,
+      10,
+      6
+    ],
+    "transferBytes": 600,
+    "maxFrameIntervalP95Ms": 16.8
+  },
+  {
+    "configuration": "pan-layout-8",
+    "build": "/pan/assets/index-Dl8z-Hw3.js",
+    "dataset": "c51c83cac46dda58122e0a4d985177c5c76ff9752e178bea547175bd87237f32",
+    "zoom": 16,
+    "state": "decoded-revisit",
+    "hops": 4,
+    "fineFogMs": [
+      7,
+      5,
+      6,
+      5
+    ],
+    "combinedMs": [
+      7,
+      5,
+      6,
+      5
+    ],
+    "transferBytes": 0,
+    "maxFrameIntervalP95Ms": 16.8
+  },
+  {
+    "configuration": "pan-native-z16",
+    "build": "/pan/assets/index-DNceyuwx.js",
+    "dataset": "6f2712d5fbfafa67d6960fe6016e5ee5c3ccf624c667d65722cde6c482f90d93",
+    "zoom": 16,
+    "state": "cold",
+    "hops": 4,
+    "fineFogMs": [
+      12,
+      9,
+      9,
+      7
+    ],
+    "combinedMs": [
+      65,
+      89,
+      123,
+      23
+    ],
+    "transferBytes": 60264,
+    "maxFrameIntervalP95Ms": 16.8
+  },
+  {
+    "configuration": "pan-native-z16",
+    "build": "/pan/assets/index-DNceyuwx.js",
+    "dataset": "6f2712d5fbfafa67d6960fe6016e5ee5c3ccf624c667d65722cde6c482f90d93",
+    "zoom": 16,
+    "state": "http-warm",
+    "hops": 4,
+    "fineFogMs": [
+      34,
+      9,
+      9,
+      8
+    ],
+    "combinedMs": [
+      34,
+      9,
+      9,
+      8
+    ],
+    "transferBytes": 2700,
+    "maxFrameIntervalP95Ms": 16.8
+  },
+  {
+    "configuration": "pan-native-z16",
+    "build": "/pan/assets/index-DNceyuwx.js",
+    "dataset": "6f2712d5fbfafa67d6960fe6016e5ee5c3ccf624c667d65722cde6c482f90d93",
+    "zoom": 16,
+    "state": "decoded-revisit",
+    "hops": 4,
+    "fineFogMs": [
+      6,
+      5,
+      6,
+      14
+    ],
+    "combinedMs": [
+      6,
+      5,
+      6,
+      14
+    ],
+    "transferBytes": 0,
+    "maxFrameIntervalP95Ms": 16.8
+  },
+  {
+    "configuration": "pan-native-z17",
+    "build": "/pan/assets/index-DNceyuwx.js",
+    "dataset": "6f2712d5fbfafa67d6960fe6016e5ee5c3ccf624c667d65722cde6c482f90d93",
+    "zoom": 17,
+    "state": "cold",
+    "hops": 4,
+    "fineFogMs": [
+      11,
+      65,
+      7,
+      6
+    ],
+    "combinedMs": [
+      122,
+      157,
+      7,
+      56
+    ],
+    "transferBytes": 15573,
+    "maxFrameIntervalP95Ms": 16.8
+  },
+  {
+    "configuration": "pan-native-z17",
+    "build": "/pan/assets/index-DNceyuwx.js",
+    "dataset": "6f2712d5fbfafa67d6960fe6016e5ee5c3ccf624c667d65722cde6c482f90d93",
+    "zoom": 17,
+    "state": "http-warm",
+    "hops": 4,
+    "fineFogMs": [
+      11,
+      62,
+      7,
+      6
+    ],
+    "combinedMs": [
+      11,
+      62,
+      7,
+      6
+    ],
+    "transferBytes": 600,
+    "maxFrameIntervalP95Ms": 16.8
+  },
+  {
+    "configuration": "pan-native-z17",
+    "build": "/pan/assets/index-DNceyuwx.js",
+    "dataset": "6f2712d5fbfafa67d6960fe6016e5ee5c3ccf624c667d65722cde6c482f90d93",
+    "zoom": 17,
+    "state": "decoded-revisit",
+    "hops": 4,
+    "fineFogMs": [
+      7,
+      7,
+      6,
+      6
+    ],
+    "combinedMs": [
+      7,
+      7,
+      6,
+      6
+    ],
+    "transferBytes": 0,
+    "maxFrameIntervalP95Ms": 16.8
+  },
+  {
+    "configuration": "pan-native-z18",
+    "build": "/pan/assets/index-DNceyuwx.js",
+    "dataset": "6f2712d5fbfafa67d6960fe6016e5ee5c3ccf624c667d65722cde6c482f90d93",
+    "zoom": 18,
+    "state": "cold",
+    "hops": 4,
+    "fineFogMs": [
+      301,
+      7,
+      10,
+      9
+    ],
+    "combinedMs": [
+      null,
+      74,
+      40,
+      160
+    ],
+    "transferBytes": 0,
+    "maxFrameIntervalP95Ms": 16.8
+  },
+  {
+    "configuration": "pan-native-z18",
+    "build": "/pan/assets/index-DNceyuwx.js",
+    "dataset": "6f2712d5fbfafa67d6960fe6016e5ee5c3ccf624c667d65722cde6c482f90d93",
+    "zoom": 18,
+    "state": "http-warm",
+    "hops": 4,
+    "fineFogMs": [
+      44,
+      8,
+      10,
+      9
+    ],
+    "combinedMs": [
+      44,
+      8,
+      10,
+      9
+    ],
+    "transferBytes": 0,
+    "maxFrameIntervalP95Ms": 16.8
+  },
+  {
+    "configuration": "pan-native-z18",
+    "build": "/pan/assets/index-DNceyuwx.js",
+    "dataset": "6f2712d5fbfafa67d6960fe6016e5ee5c3ccf624c667d65722cde6c482f90d93",
+    "zoom": 18,
+    "state": "decoded-revisit",
+    "hops": 4,
+    "fineFogMs": [
+      40,
+      7,
+      7,
+      7
+    ],
+    "combinedMs": [
+      40,
+      7,
+      7,
+      7
+    ],
+    "transferBytes": 0,
+    "maxFrameIntervalP95Ms": 16.8
+  },
+  {
+    "configuration": "pan-native-z19",
+    "build": "/pan/assets/index-DNceyuwx.js",
+    "dataset": "6f2712d5fbfafa67d6960fe6016e5ee5c3ccf624c667d65722cde6c482f90d93",
+    "zoom": 19,
+    "state": "cold",
+    "hops": 4,
+    "fineFogMs": [
+      34,
+      10,
+      10,
+      13
+    ],
+    "combinedMs": [
+      34,
+      158,
+      90,
+      115
+    ],
+    "transferBytes": 17840,
+    "maxFrameIntervalP95Ms": 16.8
+  },
+  {
+    "configuration": "pan-native-z19",
+    "build": "/pan/assets/index-DNceyuwx.js",
+    "dataset": "6f2712d5fbfafa67d6960fe6016e5ee5c3ccf624c667d65722cde6c482f90d93",
+    "zoom": 19,
+    "state": "http-warm",
+    "hops": 4,
+    "fineFogMs": [
+      14,
+      10,
+      11,
+      11
+    ],
+    "combinedMs": [
+      14,
+      10,
+      11,
+      11
+    ],
+    "transferBytes": 600,
+    "maxFrameIntervalP95Ms": 16.8
+  },
+  {
+    "configuration": "pan-native-z19",
+    "build": "/pan/assets/index-DNceyuwx.js",
+    "dataset": "6f2712d5fbfafa67d6960fe6016e5ee5c3ccf624c667d65722cde6c482f90d93",
+    "zoom": 19,
+    "state": "decoded-revisit",
+    "hops": 4,
+    "fineFogMs": [
+      6,
+      6,
+      7,
+      8
+    ],
+    "combinedMs": [
+      6,
+      6,
+      7,
+      8
+    ],
+    "transferBytes": 0,
+    "maxFrameIntervalP95Ms": 16.8
+  },
+  {
+    "configuration": "pan-workers-0-requests-2",
+    "build": "/pan/assets/index-43ECd7NO.js",
+    "dataset": "c51c83cac46dda58122e0a4d985177c5c76ff9752e178bea547175bd87237f32",
+    "zoom": 16,
+    "state": "cold",
+    "hops": 4,
+    "fineFogMs": [
+      54,
+      8,
+      58,
+      7
+    ],
+    "combinedMs": [
+      54,
+      42,
+      58,
+      7
+    ],
+    "transferBytes": 158114,
+    "maxFrameIntervalP95Ms": 16.8
+  },
+  {
+    "configuration": "pan-workers-0-requests-6",
+    "build": "/pan/assets/index-43ECd7NO.js",
+    "dataset": "c51c83cac46dda58122e0a4d985177c5c76ff9752e178bea547175bd87237f32",
+    "zoom": 16,
+    "state": "cold",
+    "hops": 4,
+    "fineFogMs": [
+      25,
+      8,
+      63,
+      7
+    ],
+    "combinedMs": [
+      57,
+      42,
+      63,
+      7
+    ],
+    "transferBytes": 158114,
+    "maxFrameIntervalP95Ms": 16.8
+  },
+  {
+    "configuration": "pan-workers-1-requests-4",
+    "build": "/pan/assets/index-43ECd7NO.js",
+    "dataset": "c51c83cac46dda58122e0a4d985177c5c76ff9752e178bea547175bd87237f32",
+    "zoom": 16,
+    "state": "cold",
+    "hops": 4,
+    "fineFogMs": [
+      59,
+      9,
+      58,
+      6
+    ],
+    "combinedMs": [
+      59,
+      41,
+      58,
+      6
+    ],
+    "transferBytes": 158114,
+    "maxFrameIntervalP95Ms": 16.7
+  },
+  {
+    "configuration": "pan-workers-2-requests-4",
+    "build": "/pan/assets/index-43ECd7NO.js",
+    "dataset": "c51c83cac46dda58122e0a4d985177c5c76ff9752e178bea547175bd87237f32",
+    "zoom": 16,
+    "state": "cold",
+    "hops": 4,
+    "fineFogMs": [
+      59,
+      10,
+      58,
+      7
+    ],
+    "combinedMs": [
+      59,
+      37,
+      72,
+      7
+    ],
+    "transferBytes": 134560,
+    "maxFrameIntervalP95Ms": 16.8
+  },
+  {
+    "configuration": "pan-z17",
+    "build": "/pan/assets/index-43ECd7NO.js",
+    "dataset": "c51c83cac46dda58122e0a4d985177c5c76ff9752e178bea547175bd87237f32",
+    "zoom": 17,
+    "state": "cold",
+    "hops": 4,
+    "fineFogMs": [
+      9,
+      42,
+      7,
+      6
+    ],
+    "combinedMs": [
+      83,
+      113,
+      40,
+      74
+    ],
+    "transferBytes": 59580,
+    "maxFrameIntervalP95Ms": 16.8
+  },
+  {
+    "configuration": "pan-z17",
+    "build": "/pan/assets/index-43ECd7NO.js",
+    "dataset": "c51c83cac46dda58122e0a4d985177c5c76ff9752e178bea547175bd87237f32",
+    "zoom": 17,
+    "state": "http-warm",
+    "hops": 4,
+    "fineFogMs": [
+      10,
+      41,
+      7,
+      7
+    ],
+    "combinedMs": [
+      10,
+      41,
+      7,
+      7
+    ],
+    "transferBytes": 1200,
+    "maxFrameIntervalP95Ms": 16.8
+  },
+  {
+    "configuration": "pan-z17",
+    "build": "/pan/assets/index-43ECd7NO.js",
+    "dataset": "c51c83cac46dda58122e0a4d985177c5c76ff9752e178bea547175bd87237f32",
+    "zoom": 17,
+    "state": "decoded-revisit",
+    "hops": 4,
+    "fineFogMs": [
+      6,
+      6,
+      5,
+      6
+    ],
+    "combinedMs": [
+      6,
+      6,
+      5,
+      6
+    ],
+    "transferBytes": 0,
+    "maxFrameIntervalP95Ms": 16.8
+  },
+  {
+    "configuration": "pan-z18",
+    "build": "/pan/assets/index-43ECd7NO.js",
+    "dataset": "c51c83cac46dda58122e0a4d985177c5c76ff9752e178bea547175bd87237f32",
+    "zoom": 18,
+    "state": "cold",
+    "hops": 4,
+    "fineFogMs": [
+      7,
+      6,
+      6,
+      6
+    ],
+    "combinedMs": [
+      219,
+      41,
+      207,
+      90
+    ],
+    "transferBytes": 18894,
+    "maxFrameIntervalP95Ms": 16.8
+  },
+  {
+    "configuration": "pan-z18",
+    "build": "/pan/assets/index-43ECd7NO.js",
+    "dataset": "c51c83cac46dda58122e0a4d985177c5c76ff9752e178bea547175bd87237f32",
+    "zoom": 18,
+    "state": "http-warm",
+    "hops": 4,
+    "fineFogMs": [
+      6,
+      6,
+      7,
+      7
+    ],
+    "combinedMs": [
+      24,
+      6,
+      7,
+      7
+    ],
+    "transferBytes": 300,
+    "maxFrameIntervalP95Ms": 16.8
+  },
+  {
+    "configuration": "pan-z18",
+    "build": "/pan/assets/index-43ECd7NO.js",
+    "dataset": "c51c83cac46dda58122e0a4d985177c5c76ff9752e178bea547175bd87237f32",
+    "zoom": 18,
+    "state": "decoded-revisit",
+    "hops": 4,
+    "fineFogMs": [
+      6,
+      6,
+      6,
+      6
+    ],
+    "combinedMs": [
+      6,
+      6,
+      6,
+      6
+    ],
+    "transferBytes": 0,
+    "maxFrameIntervalP95Ms": 16.7
+  },
+  {
+    "configuration": "pan-z19",
+    "build": "/pan/assets/index-43ECd7NO.js",
+    "dataset": "c51c83cac46dda58122e0a4d985177c5c76ff9752e178bea547175bd87237f32",
+    "zoom": 19,
+    "state": "cold",
+    "hops": 4,
+    "fineFogMs": [
+      25,
+      6,
+      6,
+      6
+    ],
+    "combinedMs": [
+      25,
+      24,
+      39,
+      39
+    ],
+    "transferBytes": 47770,
+    "maxFrameIntervalP95Ms": 16.7
+  },
+  {
+    "configuration": "pan-z19",
+    "build": "/pan/assets/index-43ECd7NO.js",
+    "dataset": "c51c83cac46dda58122e0a4d985177c5c76ff9752e178bea547175bd87237f32",
+    "zoom": 19,
+    "state": "http-warm",
+    "hops": 4,
+    "fineFogMs": [
+      7,
+      6,
+      6,
+      7
+    ],
+    "combinedMs": [
+      7,
+      6,
+      6,
+      7
+    ],
+    "transferBytes": 600,
+    "maxFrameIntervalP95Ms": 16.8
+  },
+  {
+    "configuration": "pan-z19",
+    "build": "/pan/assets/index-43ECd7NO.js",
+    "dataset": "c51c83cac46dda58122e0a4d985177c5c76ff9752e178bea547175bd87237f32",
+    "zoom": 19,
+    "state": "decoded-revisit",
+    "hops": 4,
+    "fineFogMs": [
+      6,
+      6,
+      6,
+      6
+    ],
+    "combinedMs": [
+      6,
+      6,
+      6,
+      6
+    ],
+    "transferBytes": 0,
+    "maxFrameIntervalP95Ms": 16.8
+  }
+]

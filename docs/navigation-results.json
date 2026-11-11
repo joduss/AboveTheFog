@@ -1,0 +1,71 @@
+{
+  "browser": "155.0.8059.85",
+  "runs": [
+    {
+      "name": "small-east",
+      "ms": 660,
+      "requests": 0,
+      "tiffRequests": 0,
+      "stacRequests": 0,
+      "status": "Prepared swissALTI3D \u00b7 4 m grid / 10 m bands \u00b7 ready",
+      "timeout": false
+    },
+    {
+      "name": "further-east",
+      "ms": 808,
+      "requests": 5,
+      "tiffRequests": 0,
+      "stacRequests": 0,
+      "status": "Prepared swissALTI3D \u00b7 4 m grid / 10 m bands \u00b7 ready",
+      "timeout": false
+    },
+    {
+      "name": "further-north",
+      "ms": 750,
+      "requests": 11,
+      "tiffRequests": 0,
+      "stacRequests": 0,
+      "status": "Prepared swissALTI3D \u00b7 4 m grid / 10 m bands \u00b7 ready",
+      "timeout": false
+    },
+    {
+      "name": "further-west",
+      "ms": 720,
+      "requests": 8,
+      "tiffRequests": 0,
+      "stacRequests": 0,
+      "status": "Prepared swissALTI3D \u00b7 4 m grid / 10 m bands \u00b7 ready",
+      "timeout": false
+    }
+  ],
+  "notes": [
+    "Recorded desktop production trace; each timing includes the pointer gesture and ~650 ms of deliberate pacing/pauses. These are not pure network or input-to-photon latencies.",
+    "Single context and sequential pans at z15; no STAC/TIFF requests on this route after the fix. Outside prepared coverage the runtime source remains slower."
+  ],
+  "before": [
+    {
+      "name": "small-east",
+      "ms": 712,
+      "tiffRequests": 0,
+      "stacRequests": 0
+    },
+    {
+      "name": "further-east",
+      "ms": 37001,
+      "tiffRequests": 188,
+      "stacRequests": 9
+    },
+    {
+      "name": "further-north",
+      "ms": 19943,
+      "tiffRequests": 70,
+      "stacRequests": 4
+    },
+    {
+      "name": "further-west",
+      "ms": 15695,
+      "tiffRequests": 24,
+      "stacRequests": 2
+    }
+  ]
+}

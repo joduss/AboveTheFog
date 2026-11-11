@@ -1,4 +1,4 @@
-# Swiss Fog Map — Project Brief
+# AboveTheFog — Project Brief
 
 Status: Draft project information. This is not an approved implementation specification.
 

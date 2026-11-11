@@ -1,0 +1,102 @@
+[
+  {
+    "workers": 0,
+    "simultaneousRequests": 2,
+    "build": "/OutOfTheFog/assets/index-Bkgcn_4k.js",
+    "dataset": "6f2712d5fbfafa67d6960fe6016e5ee5c3ccf624c667d65722cde6c482f90d93",
+    "fineFogMs": [
+      15,
+      9,
+      8,
+      8
+    ],
+    "combinedMs": [
+      44,
+      55,
+      56,
+      8
+    ],
+    "directCombinedMs": 750.3000000044703,
+    "medianDecodeMs": 1.2000000029802322
+  },
+  {
+    "workers": 0,
+    "simultaneousRequests": 4,
+    "build": "/OutOfTheFog/assets/index-Bkgcn_4k.js",
+    "dataset": "6f2712d5fbfafa67d6960fe6016e5ee5c3ccf624c667d65722cde6c482f90d93",
+    "fineFogMs": [
+      14,
+      10,
+      8,
+      8
+    ],
+    "combinedMs": [
+      24,
+      54,
+      73,
+      8
+    ],
+    "directCombinedMs": 725.7000000029802,
+    "medianDecodeMs": 1.1499999985098839
+  },
+  {
+    "workers": 0,
+    "simultaneousRequests": 6,
+    "build": "/OutOfTheFog/assets/index-Bkgcn_4k.js",
+    "dataset": "6f2712d5fbfafa67d6960fe6016e5ee5c3ccf624c667d65722cde6c482f90d93",
+    "fineFogMs": [
+      18,
+      60,
+      8,
+      9
+    ],
+    "combinedMs": [
+      41,
+      88,
+      56,
+      9
+    ],
+    "directCombinedMs": 795.2999999970198,
+    "medianDecodeMs": 1.199999999254942
+  },
+  {
+    "workers": 1,
+    "simultaneousRequests": 4,
+    "build": "/OutOfTheFog/assets/index-Bkgcn_4k.js",
+    "dataset": "6f2712d5fbfafa67d6960fe6016e5ee5c3ccf624c667d65722cde6c482f90d93",
+    "fineFogMs": [
+      13,
+      10,
+      8,
+      8
+    ],
+    "combinedMs": [
+      23,
+      39,
+      90,
+      8
+    ],
+    "directCombinedMs": 799.6999999955297,
+    "medianDecodeMs": 1.2000000029802322
+  },
+  {
+    "workers": 2,
+    "simultaneousRequests": 4,
+    "build": "/OutOfTheFog/assets/index-Bkgcn_4k.js",
+    "dataset": "6f2712d5fbfafa67d6960fe6016e5ee5c3ccf624c667d65722cde6c482f90d93",
+    "fineFogMs": [
+      11,
+      9,
+      9,
+      7
+    ],
+    "combinedMs": [
+      25,
+      56,
+      72,
+      7
+    ],
+    "directCombinedMs": 814.6999999955297,
+    "medianDecodeMs": 1.2500000037252903
+  }
+]

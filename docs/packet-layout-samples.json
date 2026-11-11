@@ -1,0 +1,92 @@
+[
+  {
+    "area": "fribourg-wide",
+    "fingerprint": "c51c83cac46dda58122e0a4d985177c5c76ff9752e178bea547175bd87237f32",
+    "group": 1,
+    "nativeGridGzipBytes": 557336,
+    "totalZ16Bytes": 3392139,
+    "indexBytes": 64883,
+    "firstTouchTile": [
+      16,
+      34056,
+      23102
+    ],
+    "visibleMemberBytes": 2942,
+    "firstTouchPacketBytes": 2950
+  },
+  {
+    "area": "fribourg-wide",
+    "fingerprint": "c51c83cac46dda58122e0a4d985177c5c76ff9752e178bea547175bd87237f32",
+    "group": 2,
+    "nativeGridGzipBytes": 557336,
+    "totalZ16Bytes": 3340335,
+    "indexBytes": 16547,
+    "firstTouchTile": [
+      16,
+      34056,
+      23102
+    ],
+    "visibleMemberBytes": 2942,
+    "firstTouchPacketBytes": 13674
+  },
+  {
+    "area": "fribourg-wide",
+    "fingerprint": "c51c83cac46dda58122e0a4d985177c5c76ff9752e178bea547175bd87237f32",
+    "group": 8,
+    "nativeGridGzipBytes": 557336,
+    "totalZ16Bytes": 3326001,
+    "indexBytes": 1493,
+    "firstTouchTile": [
+      16,
+      34056,
+      23102
+    ],
+    "visibleMemberBytes": 2942,
+    "firstTouchPacketBytes": 173759
+  },
+  {
+    "area": "zermatt",
+    "fingerprint": "a1cd88ea3052950b2932e2bd7afc923b67362e02c0e9c9356af07e2177a6451a",
+    "group": 1,
+    "nativeGridGzipBytes": 184044,
+    "totalZ16Bytes": 640056,
+    "indexBytes": 5752,
+    "firstTouchTile": [
+      16,
+      34176,
+      23308
+    ],
+    "visibleMemberBytes": 8236,
+    "firstTouchPacketBytes": 8244
+  },
+  {
+    "area": "zermatt",
+    "fingerprint": "a1cd88ea3052950b2932e2bd7afc923b67362e02c0e9c9356af07e2177a6451a",
+    "group": 2,
+    "nativeGridGzipBytes": 184044,
+    "totalZ16Bytes": 635581,
+    "indexBytes": 1577,
+    "firstTouchTile": [
+      16,
+      34176,
+      23308
+    ],
+    "visibleMemberBytes": 8236,
+    "firstTouchPacketBytes": 31310
+  },
+  {
+    "area": "zermatt",
+    "fingerprint": "a1cd88ea3052950b2932e2bd7afc923b67362e02c0e9c9356af07e2177a6451a",
+    "group": 8,
+    "nativeGridGzipBytes": 184044,
+    "totalZ16Bytes": 634910,
+    "indexBytes": 366,
+    "firstTouchTile": [
+      16,
+      34176,
+      23308
+    ],
+    "visibleMemberBytes": 8236,
+    "firstTouchPacketBytes": 413204
+  }
+]

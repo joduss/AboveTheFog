@@ -1,0 +1,765 @@
+{
+  "browser": "155.0.8059.85",
+  "viewport": {
+    "width": 1100,
+    "height": 850
+  },
+  "connection": {
+    "latencyMs": 20,
+    "downloadBytesPerSecond": 6250000
+  },
+  "results": [
+    {
+      "place": "Fribourg",
+      "mode": "off",
+      "phase": "cold-app-and-http",
+      "longTasks": [
+        {
+          "start": 215.29999995231628,
+          "ms": 52
+        },
+        {
+          "start": 413.7999999523163,
+          "ms": 74
+        },
+        {
+          "start": 498.6999999284744,
+          "ms": 100
+        }
+      ],
+      "first": 2854.5999999046326,
+      "complete": 12503.799999952316,
+      "status": "swissALTI3D \u00b7 2 m samples \u00b7 ready",
+      "size": {
+        "x": 341,
+        "y": 160,
+        "width": 759,
+        "height": 751,
+        "top": 160,
+        "right": 1100,
+        "bottom": 911,
+        "left": 341
+      },
+      "heap": 12551358,
+      "requests": 336,
+      "transferredBytes": 25606497,
+      "stacRequests": 17,
+      "tiffRequests": 319,
+      "preparedRequests": 0,
+      "thresholdRequests": 0,
+      "interactionTwoRafMs": [
+        8.5,
+        18.700000047683716,
+        32.39999997615814,
+        31.899999976158142
+      ],
+      "errors": [],
+      "timeout": false,
+      "wallMs": 13003,
+      "responseContentLengthSum": 34356380
+    },
+    {
+      "place": "Fribourg",
+      "mode": "off",
+      "phase": "warm-http-cold-app",
+      "longTasks": [],
+      "first": 738.8000000715256,
+      "complete": 3973.100000023842,
+      "status": "swissALTI3D \u00b7 2 m samples \u00b7 ready",
+      "size": {
+        "x": 341,
+        "y": 160,
+        "width": 759,
+        "height": 751,
+        "top": 160,
+        "right": 1100,
+        "bottom": 911,
+        "left": 341
+      },
+      "heap": 13350049,
+      "requests": 326,
+      "transferredBytes": 11712236,
+      "stacRequests": 17,
+      "tiffRequests": 309,
+      "preparedRequests": 0,
+      "thresholdRequests": 0,
+      "interactionTwoRafMs": [
+        12,
+        30.899999976158142,
+        33.299999952316284,
+        31.600000023841858
+      ],
+      "errors": [],
+      "timeout": false,
+      "wallMs": 4463,
+      "responseContentLengthSum": 33762826
+    },
+    {
+      "place": "Fribourg",
+      "mode": "off",
+      "phase": "warm-app",
+      "longTasks": [],
+      "first": 215,
+      "complete": 293,
+      "status": "swissALTI3D \u00b7 2 m samples \u00b7 ready",
+      "size": {
+        "x": 341,
+        "y": 160,
+        "width": 759,
+        "height": 751,
+        "top": 160,
+        "right": 1100,
+        "bottom": 911,
+        "left": 341
+      },
+      "heap": 13921367,
+      "requests": 0,
+      "transferredBytes": 0,
+      "stacRequests": 0,
+      "tiffRequests": 0,
+      "preparedRequests": 0,
+      "thresholdRequests": 0,
+      "interactionTwoRafMs": [
+        26.799999952316284,
+        31.600000023841858,
+        30.5,
+        31.399999976158142
+      ],
+      "errors": [],
+      "timeout": false,
+      "wallMs": 797,
+      "responseContentLengthSum": 0
+    },
+    {
+      "place": "Fribourg",
+      "mode": "off",
+      "interaction": "zoom15-to16",
+      "wallMs": 6605,
+      "requests": 114
+    },
+    {
+      "place": "Fribourg",
+      "mode": "raster",
+      "phase": "cold-app-and-http",
+      "longTasks": [
+        {
+          "start": 181.10000002384186,
+          "ms": 80
+        },
+        {
+          "start": 261.40000009536743,
+          "ms": 50
+        }
+      ],
+      "first": 417.60000002384186,
+      "complete": 721.5,
+      "status": "Prepared swissALTI3D \u00b7 4 m grid / 10 m bands \u00b7 ready",
+      "size": {
+        "x": 341,
+        "y": 160,
+        "width": 759,
+        "height": 751,
+        "top": 160,
+        "right": 1100,
+        "bottom": 911,
+        "left": 341
+      },
+      "heap": 10954063,
+      "requests": 16,
+      "transferredBytes": 54992,
+      "stacRequests": 0,
+      "tiffRequests": 0,
+      "preparedRequests": 16,
+      "thresholdRequests": 0,
+      "interactionTwoRafMs": [
+        28.600000023841858,
+        31.59999990463257,
+        29.899999976158142,
+        32.10000002384186
+      ],
+      "errors": [],
+      "timeout": false,
+      "wallMs": 1226,
+      "responseContentLengthSum": 54992
+    },
+    {
+      "place": "Fribourg",
+      "mode": "raster",
+      "phase": "warm-http-cold-app",
+      "longTasks": [],
+      "first": 232.79999995231628,
+      "complete": 361,
+      "status": "Prepared swissALTI3D \u00b7 4 m grid / 10 m bands \u00b7 ready",
+      "size": {
+        "x": 341,
+        "y": 160,
+        "width": 759,
+        "height": 751,
+        "top": 160,
+        "right": 1100,
+        "bottom": 911,
+        "left": 341
+      },
+      "heap": 13107216,
+      "requests": 16,
+      "transferredBytes": 0,
+      "stacRequests": 0,
+      "tiffRequests": 0,
+      "preparedRequests": 16,
+      "thresholdRequests": 0,
+      "interactionTwoRafMs": [
+        27.40000009536743,
+        32.700000047683716,
+        31,
+        31.700000047683716
+      ],
+      "errors": [],
+      "timeout": false,
+      "wallMs": 863,
+      "responseContentLengthSum": 54992
+    },
+    {
+      "place": "Fribourg",
+      "mode": "raster",
+      "phase": "warm-app",
+      "longTasks": [],
+      "first": 201.39999997615814,
+      "complete": 281.39999997615814,
+      "status": "Prepared swissALTI3D \u00b7 4 m grid / 10 m bands \u00b7 ready",
+      "size": {
+        "x": 341,
+        "y": 160,
+        "width": 759,
+        "height": 751,
+        "top": 160,
+        "right": 1100,
+        "bottom": 911,
+        "left": 341
+      },
+      "heap": 18448370,
+      "requests": 0,
+      "transferredBytes": 0,
+      "stacRequests": 0,
+      "tiffRequests": 0,
+      "preparedRequests": 0,
+      "thresholdRequests": 0,
+      "interactionTwoRafMs": [
+        29,
+        30,
+        31.800000071525574,
+        32.300000071525574
+      ],
+      "errors": [],
+      "timeout": false,
+      "wallMs": 785,
+      "responseContentLengthSum": 0
+    },
+    {
+      "place": "Fribourg",
+      "mode": "raster",
+      "interaction": "zoom15-to16",
+      "wallMs": 477,
+      "requests": 16
+    },
+    {
+      "place": "Fribourg",
+      "mode": "vector",
+      "phase": "cold-app-and-http",
+      "longTasks": [
+        {
+          "start": 184.29999995231628,
+          "ms": 78
+        },
+        {
+          "start": 262.39999997615814,
+          "ms": 52
+        }
+      ],
+      "first": 439.5,
+      "complete": 834.6000000238419,
+      "status": "Prepared swissALTI3D \u00b7 4 m grid / 10 m bands \u00b7 ready",
+      "size": {
+        "x": 341,
+        "y": 160,
+        "width": 759,
+        "height": 751,
+        "top": 160,
+        "right": 1100,
+        "bottom": 911,
+        "left": 341
+      },
+      "heap": 26302255,
+      "requests": 16,
+      "transferredBytes": 431878,
+      "stacRequests": 0,
+      "tiffRequests": 0,
+      "preparedRequests": 16,
+      "thresholdRequests": 0,
+      "interactionTwoRafMs": [
+        25.5,
+        66.29999995231628,
+        33.89999997615814,
+        29.699999928474426
+      ],
+      "errors": [],
+      "timeout": false,
+      "wallMs": 1374,
+      "responseContentLengthSum": 431878
+    },
+    {
+      "place": "Fribourg",
+      "mode": "vector",
+      "phase": "warm-http-cold-app",
+      "longTasks": [],
+      "first": 214.70000004768372,
+      "complete": 420.89999997615814,
+      "status": "Prepared swissALTI3D \u00b7 4 m grid / 10 m bands \u00b7 ready",
+      "size": {
+        "x": 341,
+        "y": 160,
+        "width": 759,
+        "height": 751,
+        "top": 160,
+        "right": 1100,
+        "bottom": 911,
+        "left": 341
+      },
+      "heap": 52237619,
+      "requests": 16,
+      "transferredBytes": 0,
+      "stacRequests": 0,
+      "tiffRequests": 0,
+      "preparedRequests": 16,
+      "thresholdRequests": 0,
+      "interactionTwoRafMs": [
+        23.199999928474426,
+        37.799999952316284,
+        32.39999997615814,
+        29.100000023841858
+      ],
+      "errors": [],
+      "timeout": false,
+      "wallMs": 927,
+      "responseContentLengthSum": 431878
+    },
+    {
+      "place": "Fribourg",
+      "mode": "vector",
+      "phase": "warm-app",
+      "longTasks": [],
+      "first": 219.79999995231628,
+      "complete": 444.39999997615814,
+      "status": "Prepared swissALTI3D \u00b7 4 m grid / 10 m bands \u00b7 ready",
+      "size": {
+        "x": 341,
+        "y": 160,
+        "width": 759,
+        "height": 751,
+        "top": 160,
+        "right": 1100,
+        "bottom": 911,
+        "left": 341
+      },
+      "heap": 84438427,
+      "requests": 16,
+      "transferredBytes": 0,
+      "stacRequests": 0,
+      "tiffRequests": 0,
+      "preparedRequests": 16,
+      "thresholdRequests": 0,
+      "interactionTwoRafMs": [
+        25.600000023841858,
+        34.5,
+        28.299999952316284,
+        25.899999976158142
+      ],
+      "errors": [],
+      "timeout": false,
+      "wallMs": 942,
+      "responseContentLengthSum": 431878
+    },
+    {
+      "place": "Fribourg",
+      "mode": "vector",
+      "interaction": "zoom15-to16",
+      "wallMs": 483,
+      "requests": 16
+    },
+    {
+      "place": "Zermatt",
+      "mode": "off",
+      "phase": "cold-app-and-http",
+      "longTasks": [
+        {
+          "start": 186.30000007152557,
+          "ms": 80
+        }
+      ],
+      "first": 3060.600000023842,
+      "complete": 14744.5,
+      "status": "swissALTI3D \u00b7 2 m samples \u00b7 ready",
+      "size": {
+        "x": 341,
+        "y": 160,
+        "width": 759,
+        "height": 751,
+        "top": 160,
+        "right": 1100,
+        "bottom": 911,
+        "left": 341
+      },
+      "heap": 13107653,
+      "requests": 389,
+      "transferredBytes": 38597416,
+      "stacRequests": 17,
+      "tiffRequests": 372,
+      "preparedRequests": 0,
+      "thresholdRequests": 0,
+      "interactionTwoRafMs": [
+        9.5,
+        24.399999976158142,
+        34.300000071525574,
+        26.200000047683716
+      ],
+      "errors": [],
+      "timeout": false,
+      "wallMs": 15233,
+      "responseContentLengthSum": 45592935
+    },
+    {
+      "place": "Zermatt",
+      "mode": "off",
+      "phase": "warm-http-cold-app",
+      "longTasks": [],
+      "first": 1337.6999999284744,
+      "complete": 5821.199999928474,
+      "status": "swissALTI3D \u00b7 2 m samples \u00b7 ready",
+      "size": {
+        "x": 341,
+        "y": 160,
+        "width": 759,
+        "height": 751,
+        "top": 160,
+        "right": 1100,
+        "bottom": 911,
+        "left": 341
+      },
+      "heap": 14628098,
+      "requests": 381,
+      "transferredBytes": 29043874,
+      "stacRequests": 17,
+      "tiffRequests": 366,
+      "preparedRequests": 0,
+      "thresholdRequests": 2,
+      "interactionTwoRafMs": [
+        6,
+        28.600000023841858,
+        31.899999976158142,
+        33.10000002384186
+      ],
+      "errors": [],
+      "timeout": false,
+      "wallMs": 6509,
+      "responseContentLengthSum": 45265255
+    },
+    {
+      "place": "Zermatt",
+      "mode": "off",
+      "phase": "warm-app",
+      "longTasks": [],
+      "first": 221.39999997615814,
+      "complete": 287.7999999523163,
+      "status": "swissALTI3D \u00b7 2 m samples \u00b7 ready",
+      "size": {
+        "x": 341,
+        "y": 160,
+        "width": 759,
+        "height": 751,
+        "top": 160,
+        "right": 1100,
+        "bottom": 911,
+        "left": 341
+      },
+      "heap": 24868757,
+      "requests": 0,
+      "transferredBytes": 0,
+      "stacRequests": 0,
+      "tiffRequests": 0,
+      "preparedRequests": 0,
+      "thresholdRequests": 0,
+      "interactionTwoRafMs": [
+        28.399999976158142,
+        32.39999997615814,
+        31,
+        32.59999990463257
+      ],
+      "errors": [],
+      "timeout": false,
+      "wallMs": 793,
+      "responseContentLengthSum": 0
+    },
+    {
+      "place": "Zermatt",
+      "mode": "off",
+      "interaction": "zoom15-to16",
+      "wallMs": 7172,
+      "requests": 146
+    },
+    {
+      "place": "Zermatt",
+      "mode": "raster",
+      "phase": "cold-app-and-http",
+      "longTasks": [
+        {
+          "start": 179.5,
+          "ms": 80
+        },
+        {
+          "start": 260.39999997615814,
+          "ms": 52
+        }
+      ],
+      "first": 414.7999999523163,
+      "complete": 774.5999999046326,
+      "status": "Prepared swissALTI3D \u00b7 4 m grid / 10 m bands \u00b7 ready",
+      "size": {
+        "x": 341,
+        "y": 160,
+        "width": 759,
+        "height": 751,
+        "top": 160,
+        "right": 1100,
+        "bottom": 911,
+        "left": 341
+      },
+      "heap": 11344856,
+      "requests": 16,
+      "transferredBytes": 130855,
+      "stacRequests": 0,
+      "tiffRequests": 0,
+      "preparedRequests": 16,
+      "thresholdRequests": 0,
+      "interactionTwoRafMs": [
+        28.899999976158142,
+        31.700000047683716,
+        30.90000009536743,
+        31.800000071525574
+      ],
+      "errors": [],
+      "timeout": false,
+      "wallMs": 1279,
+      "responseContentLengthSum": 130855
+    },
+    {
+      "place": "Zermatt",
+      "mode": "raster",
+      "phase": "warm-http-cold-app",
+      "longTasks": [],
+      "first": 233.59999990463257,
+      "complete": 365.09999990463257,
+      "status": "Prepared swissALTI3D \u00b7 4 m grid / 10 m bands \u00b7 ready",
+      "size": {
+        "x": 341,
+        "y": 160,
+        "width": 759,
+        "height": 751,
+        "top": 160,
+        "right": 1100,
+        "bottom": 911,
+        "left": 341
+      },
+      "heap": 12841654,
+      "requests": 16,
+      "transferredBytes": 0,
+      "stacRequests": 0,
+      "tiffRequests": 0,
+      "preparedRequests": 16,
+      "thresholdRequests": 0,
+      "interactionTwoRafMs": [
+        26.899999976158142,
+        31.899999976158142,
+        31.699999928474426,
+        30.800000071525574
+      ],
+      "errors": [],
+      "timeout": false,
+      "wallMs": 867,
+      "responseContentLengthSum": 130855
+    },
+    {
+      "place": "Zermatt",
+      "mode": "raster",
+      "phase": "warm-app",
+      "longTasks": [],
+      "first": 184.79999995231628,
+      "complete": 280.7999999523163,
+      "status": "Prepared swissALTI3D \u00b7 4 m grid / 10 m bands \u00b7 ready",
+      "size": {
+        "x": 341,
+        "y": 160,
+        "width": 759,
+        "height": 751,
+        "top": 160,
+        "right": 1100,
+        "bottom": 911,
+        "left": 341
+      },
+      "heap": 11759798,
+      "requests": 0,
+      "transferredBytes": 0,
+      "stacRequests": 0,
+      "tiffRequests": 0,
+      "preparedRequests": 0,
+      "thresholdRequests": 0,
+      "interactionTwoRafMs": [
+        30.600000023841858,
+        29.899999976158142,
+        31.600000023841858,
+        31.600000023841858
+      ],
+      "errors": [],
+      "timeout": false,
+      "wallMs": 784,
+      "responseContentLengthSum": 0
+    },
+    {
+      "place": "Zermatt",
+      "mode": "raster",
+      "interaction": "zoom15-to16",
+      "wallMs": 474,
+      "requests": 16
+    },
+    {
+      "place": "Zermatt",
+      "mode": "vector",
+      "phase": "cold-app-and-http",
+      "longTasks": [],
+      "first": 421.6999999284744,
+      "complete": 915.2999999523163,
+      "status": "Prepared swissALTI3D \u00b7 4 m grid / 10 m bands \u00b7 ready",
+      "size": {
+        "x": 341,
+        "y": 160,
+        "width": 759,
+        "height": 751,
+        "top": 160,
+        "right": 1100,
+        "bottom": 911,
+        "left": 341
+      },
+      "heap": 33695603,
+      "requests": 16,
+      "transferredBytes": 1323723,
+      "stacRequests": 0,
+      "tiffRequests": 0,
+      "preparedRequests": 16,
+      "thresholdRequests": 0,
+      "interactionTwoRafMs": [
+        80.70000004768372,
+        106.20000004768372,
+        73.89999997615814,
+        49.799999952316284
+      ],
+      "errors": [],
+      "timeout": false,
+      "wallMs": 1613,
+      "responseContentLengthSum": 1323723
+    },
+    {
+      "place": "Zermatt",
+      "mode": "vector",
+      "phase": "warm-http-cold-app",
+      "longTasks": [],
+      "first": 220.70000004768372,
+      "complete": 487.5,
+      "status": "Prepared swissALTI3D \u00b7 4 m grid / 10 m bands \u00b7 ready",
+      "size": {
+        "x": 341,
+        "y": 160,
+        "width": 759,
+        "height": 751,
+        "top": 160,
+        "right": 1100,
+        "bottom": 911,
+        "left": 341
+      },
+      "heap": 42703528,
+      "requests": 16,
+      "transferredBytes": 0,
+      "stacRequests": 0,
+      "tiffRequests": 0,
+      "preparedRequests": 16,
+      "thresholdRequests": 0,
+      "interactionTwoRafMs": [
+        58.40000009536743,
+        60.199999928474426,
+        56.60000002384186,
+        59
+      ],
+      "errors": [],
+      "timeout": false,
+      "wallMs": 1102,
+      "responseContentLengthSum": 1323723
+    },
+    {
+      "place": "Zermatt",
+      "mode": "vector",
+      "phase": "warm-app",
+      "longTasks": [],
+      "first": 229.5,
+      "complete": 484.2999999523163,
+      "status": "Prepared swissALTI3D \u00b7 4 m grid / 10 m bands \u00b7 ready",
+      "size": {
+        "x": 341,
+        "y": 160,
+        "width": 759,
+        "height": 751,
+        "top": 160,
+        "right": 1100,
+        "bottom": 911,
+        "left": 341
+      },
+      "heap": 34891128,
+      "requests": 16,
+      "transferredBytes": 0,
+      "stacRequests": 0,
+      "tiffRequests": 0,
+      "preparedRequests": 16,
+      "thresholdRequests": 0,
+      "interactionTwoRafMs": [
+        57.5,
+        55,
+        63.10000002384186,
+        55.89999997615814
+      ],
+      "errors": [],
+      "timeout": false,
+      "wallMs": 1095,
+      "responseContentLengthSum": 1323723
+    },
+    {
+      "place": "Zermatt",
+      "mode": "vector",
+      "interaction": "zoom15-to16",
+      "wallMs": 704,
+      "requests": 16
+    }
+  ],
+  "host": {
+    "os": "macOS",
+    "arch": "x64",
+    "cpu": "Intel Core i7-9750H @ 2.60 GHz",
+    "logicalCpus": 12,
+    "ramBytes": 34359738368
+  },
+  "date": "2026-11-04",
+  "notes": [
+    "Production build served on localhost; upstream COGs use live Internet. CDP page connection emulation does not establish cold provider caches or guaranteed worker bandwidth.",
+    "First/complete are data-availability status plus two animation frames after navigation, not input-to-photon measurements.",
+    "Map fixed to 759 x 751 CSS pixels. Initial threshold 650 m for all candidates; mountain interaction and fidelity also tested at 2500 m.",
+    "One run per cell; no statistical confidence claim. Warm HTTP means CacheStorage cleared, same browser context; warm app means CacheStorage retained.",
+    "Requests include worker fetches through BrowserContext. Transfer sizes are response body bytes from Playwright; HTTP-cached bodies report zero.",
+    "Long tasks cover loading; threshold timings use two requestAnimationFrame callbacks. Heap is a single JS-heap snapshot, not process/GPU peak memory.",
+    "Zoom measurements include a 400 ms synchronization floor."
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "version": 1,
+  "areas": [
+    {
+      "id": "fribourg",
+      "center": [
+        7.1619,
+        46.8065
+      ],
+      "sideTiles": 5
+    },
+    {
+      "id": "zermatt",
+      "center": [
+        7.7491,
+        46.0207
+      ],
+      "sideTiles": 5
+    },
+    {
+      "id": "fribourg-wide",
+      "center": [
+        7.1619,
+        46.8065
+      ],
+      "sideTiles": 17
+    }
+  ],
+  "minZoom": 13,
+  "maxZoom": 17,
+  "gridMetres": 4,
+  "bandMetres": 10,
+  "tileSize": 256
+}

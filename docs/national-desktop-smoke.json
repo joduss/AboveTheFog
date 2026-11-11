@@ -1,0 +1,578 @@
+[
+  {
+    "build": "/OutOfTheFog/assets/index-Bkgcn_4k.js",
+    "dataset": "6f2712d5fbfafa67d6960fe6016e5ee5c3ccf624c667d65722cde6c482f90d93",
+    "place": "Zurich",
+    "zoom": 13,
+    "state": "cold",
+    "repetitions": 1,
+    "observations": 1,
+    "sourceRequests": 0,
+    "metrics": {
+      "fineFogMs": {
+        "measured": 1,
+        "missing": 0,
+        "median": 710,
+        "p95": 710,
+        "max": 710
+      },
+      "firstFullResolutionImageryMs": {
+        "measured": 1,
+        "missing": 0,
+        "median": 73,
+        "p95": 73,
+        "max": 73
+      },
+      "combinedMs": {
+        "measured": 1,
+        "missing": 0,
+        "median": 710,
+        "p95": 710,
+        "max": 710
+      },
+      "stripReadyMs": {
+        "measured": 1,
+        "missing": 0,
+        "median": 1009,
+        "p95": 1009,
+        "max": 1009
+      },
+      "viewportReadyMs": {
+        "measured": 1,
+        "missing": 0,
+        "median": 1009,
+        "p95": 1009,
+        "max": 1009
+      },
+      "settledAfterReleaseMs": {
+        "measured": 1,
+        "missing": 0,
+        "median": 810,
+        "p95": 810,
+        "max": 810
+      },
+      "frameP95Ms": {
+        "measured": 1,
+        "missing": 0,
+        "median": 16.700000000000728,
+        "p95": 16.700000000000728,
+        "max": 16.700000000000728
+      },
+      "trackedBytes": {
+        "measured": 1,
+        "missing": 0,
+        "median": 7092664,
+        "p95": 7092664,
+        "max": 7092664
+      },
+      "textureBytes": {
+        "measured": 1,
+        "missing": 0,
+        "median": 4980736,
+        "p95": 4980736,
+        "max": 4980736
+      }
+    },
+    "routeTransferBytes": {
+      "measured": 1,
+      "missing": 0,
+      "median": 298074,
+      "p95": 298074,
+      "max": 298074
+    },
+    "worstFineEdgePerRouteMs": {
+      "measured": 1,
+      "missing": 0,
+      "median": 710,
+      "p95": 710,
+      "max": 710
+    },
+    "directCombinedMs": {
+      "measured": 1,
+      "missing": 0,
+      "median": 856.7000000029802,
+      "p95": 856.7000000029802,
+      "max": 856.7000000029802
+    }
+  },
+  {
+    "build": "/OutOfTheFog/assets/index-Bkgcn_4k.js",
+    "dataset": "6f2712d5fbfafa67d6960fe6016e5ee5c3ccf624c667d65722cde6c482f90d93",
+    "place": "St. Moritz",
+    "zoom": 13,
+    "state": "cold",
+    "repetitions": 1,
+    "observations": 1,
+    "sourceRequests": 0,
+    "metrics": {
+      "fineFogMs": {
+        "measured": 1,
+        "missing": 0,
+        "median": 208,
+        "p95": 208,
+        "max": 208
+      },
+      "firstFullResolutionImageryMs": {
+        "measured": 1,
+        "missing": 0,
+        "median": 23,
+        "p95": 23,
+        "max": 23
+      },
+      "combinedMs": {
+        "measured": 1,
+        "missing": 0,
+        "median": 208,
+        "p95": 208,
+        "max": 208
+      },
+      "stripReadyMs": {
+        "measured": 1,
+        "missing": 0,
+        "median": 1379,
+        "p95": 1379,
+        "max": 1379
+      },
+      "viewportReadyMs": {
+        "measured": 1,
+        "missing": 0,
+        "median": 1379,
+        "p95": 1379,
+        "max": 1379
+      },
+      "settledAfterReleaseMs": {
+        "measured": 1,
+        "missing": 0,
+        "median": 1175,
+        "p95": 1175,
+        "max": 1175
+      },
+      "frameP95Ms": {
+        "measured": 1,
+        "missing": 0,
+        "median": 16.800000000000182,
+        "p95": 16.800000000000182,
+        "max": 16.800000000000182
+      },
+      "trackedBytes": {
+        "measured": 1,
+        "missing": 0,
+        "median": 9462887,
+        "p95": 9462887,
+        "max": 9462887
+      },
+      "textureBytes": {
+        "measured": 1,
+        "missing": 0,
+        "median": 5242880,
+        "p95": 5242880,
+        "max": 5242880
+      }
+    },
+    "routeTransferBytes": {
+      "measured": 1,
+      "missing": 0,
+      "median": 800250,
+      "p95": 800250,
+      "max": 800250
+    },
+    "worstFineEdgePerRouteMs": {
+      "measured": 1,
+      "missing": 0,
+      "median": 208,
+      "p95": 208,
+      "max": 208
+    },
+    "directCombinedMs": {
+      "measured": 1,
+      "missing": 0,
+      "median": 888.2000000029802,
+      "p95": 888.2000000029802,
+      "max": 888.2000000029802
+    }
+  },
+  {
+    "build": "/OutOfTheFog/assets/index-Bkgcn_4k.js",
+    "dataset": "6f2712d5fbfafa67d6960fe6016e5ee5c3ccf624c667d65722cde6c482f90d93",
+    "place": "Lugano",
+    "zoom": 13,
+    "state": "cold",
+    "repetitions": 1,
+    "observations": 1,
+    "sourceRequests": 0,
+    "metrics": {
+      "fineFogMs": {
+        "measured": 1,
+        "missing": 0,
+        "median": 82,
+        "p95": 82,
+        "max": 82
+      },
+      "firstFullResolutionImageryMs": {
+        "measured": 1,
+        "missing": 0,
+        "median": 82,
+        "p95": 82,
+        "max": 82
+      },
+      "combinedMs": {
+        "measured": 1,
+        "missing": 0,
+        "median": 82,
+        "p95": 82,
+        "max": 82
+      },
+      "stripReadyMs": {
+        "measured": 1,
+        "missing": 0,
+        "median": 177,
+        "p95": 177,
+        "max": 177
+      },
+      "viewportReadyMs": {
+        "measured": 1,
+        "missing": 0,
+        "median": 177,
+        "p95": 177,
+        "max": 177
+      },
+      "settledAfterReleaseMs": {
+        "measured": 1,
+        "missing": 0,
+        "median": 4,
+        "p95": 4,
+        "max": 4
+      },
+      "frameP95Ms": {
+        "measured": 1,
+        "missing": 0,
+        "median": 16.700000000000273,
+        "p95": 16.700000000000273,
+        "max": 16.700000000000273
+      },
+      "trackedBytes": {
+        "measured": 1,
+        "missing": 0,
+        "median": 6611413,
+        "p95": 6611413,
+        "max": 6611413
+      },
+      "textureBytes": {
+        "measured": 1,
+        "missing": 0,
+        "median": 4194304,
+        "p95": 4194304,
+        "max": 4194304
+      }
+    },
+    "routeTransferBytes": {
+      "measured": 1,
+      "missing": 0,
+      "median": 16820,
+      "p95": 16820,
+      "max": 16820
+    },
+    "worstFineEdgePerRouteMs": {
+      "measured": 1,
+      "missing": 0,
+      "median": 82,
+      "p95": 82,
+      "max": 82
+    },
+    "directCombinedMs": {
+      "measured": 1,
+      "missing": 0,
+      "median": 1070.0999999940395,
+      "p95": 1070.0999999940395,
+      "max": 1070.0999999940395
+    }
+  },
+  {
+    "build": "/OutOfTheFog/assets/index-Bkgcn_4k.js",
+    "dataset": "6f2712d5fbfafa67d6960fe6016e5ee5c3ccf624c667d65722cde6c482f90d93",
+    "place": "Geneva",
+    "zoom": 15,
+    "state": "cold",
+    "repetitions": 1,
+    "observations": 1,
+    "sourceRequests": 0,
+    "metrics": {
+      "fineFogMs": {
+        "measured": 1,
+        "missing": 0,
+        "median": 108,
+        "p95": 108,
+        "max": 108
+      },
+      "firstFullResolutionImageryMs": {
+        "measured": 1,
+        "missing": 0,
+        "median": 173,
+        "p95": 173,
+        "max": 173
+      },
+      "combinedMs": {
+        "measured": 1,
+        "missing": 0,
+        "median": 173,
+        "p95": 173,
+        "max": 173
+      },
+      "stripReadyMs": {
+        "measured": 1,
+        "missing": 0,
+        "median": 246,
+        "p95": 246,
+        "max": 246
+      },
+      "viewportReadyMs": {
+        "measured": 1,
+        "missing": 0,
+        "median": 246,
+        "p95": 246,
+        "max": 246
+      },
+      "settledAfterReleaseMs": {
+        "measured": 1,
+        "missing": 0,
+        "median": 39,
+        "p95": 39,
+        "max": 39
+      },
+      "frameP95Ms": {
+        "measured": 1,
+        "missing": 0,
+        "median": 16.700000000000045,
+        "p95": 16.700000000000045,
+        "max": 16.700000000000045
+      },
+      "trackedBytes": {
+        "measured": 1,
+        "missing": 0,
+        "median": 8992951,
+        "p95": 8992951,
+        "max": 8992951
+      },
+      "textureBytes": {
+        "measured": 1,
+        "missing": 0,
+        "median": 4980736,
+        "p95": 4980736,
+        "max": 4980736
+      }
+    },
+    "routeTransferBytes": {
+      "measured": 1,
+      "missing": 0,
+      "median": 39245,
+      "p95": 39245,
+      "max": 39245
+    },
+    "worstFineEdgePerRouteMs": {
+      "measured": 1,
+      "missing": 0,
+      "median": 108,
+      "p95": 108,
+      "max": 108
+    },
+    "directCombinedMs": {
+      "measured": 1,
+      "missing": 0,
+      "median": 731,
+      "p95": 731,
+      "max": 731
+    }
+  },
+  {
+    "build": "/OutOfTheFog/assets/index-Bkgcn_4k.js",
+    "dataset": "6f2712d5fbfafa67d6960fe6016e5ee5c3ccf624c667d65722cde6c482f90d93",
+    "place": "Basel",
+    "zoom": 19,
+    "state": "cold",
+    "repetitions": 1,
+    "observations": 1,
+    "sourceRequests": 0,
+    "metrics": {
+      "fineFogMs": {
+        "measured": 1,
+        "missing": 0,
+        "median": 7,
+        "p95": 7,
+        "max": 7
+      },
+      "firstFullResolutionImageryMs": {
+        "measured": 1,
+        "missing": 0,
+        "median": 72,
+        "p95": 72,
+        "max": 72
+      },
+      "combinedMs": {
+        "measured": 1,
+        "missing": 0,
+        "median": 72,
+        "p95": 72,
+        "max": 72
+      },
+      "stripReadyMs": {
+        "measured": 1,
+        "missing": 0,
+        "median": 7,
+        "p95": 7,
+        "max": 7
+      },
+      "viewportReadyMs": {
+        "measured": 1,
+        "missing": 0,
+        "median": 7,
+        "p95": 7,
+        "max": 7
+      },
+      "settledAfterReleaseMs": {
+        "measured": 1,
+        "missing": 0,
+        "median": 5,
+        "p95": 5,
+        "max": 5
+      },
+      "frameP95Ms": {
+        "measured": 1,
+        "missing": 0,
+        "median": 16.700000000000273,
+        "p95": 16.700000000000273,
+        "max": 16.700000000000273
+      },
+      "trackedBytes": {
+        "measured": 1,
+        "missing": 0,
+        "median": 5110425,
+        "p95": 5110425,
+        "max": 5110425
+      },
+      "textureBytes": {
+        "measured": 1,
+        "missing": 0,
+        "median": 4194304,
+        "p95": 4194304,
+        "max": 4194304
+      }
+    },
+    "routeTransferBytes": {
+      "measured": 1,
+      "missing": 0,
+      "median": 0,
+      "p95": 0,
+      "max": 0
+    },
+    "worstFineEdgePerRouteMs": {
+      "measured": 1,
+      "missing": 0,
+      "median": 7,
+      "p95": 7,
+      "max": 7
+    },
+    "directCombinedMs": {
+      "measured": 1,
+      "missing": 0,
+      "median": 702.0999999940395,
+      "p95": 702.0999999940395,
+      "max": 702.0999999940395
+    }
+  },
+  {
+    "build": "/OutOfTheFog/assets/index-Bkgcn_4k.js",
+    "dataset": "e1cade929d3007d74be67e5d107e517e40b13e0597a114097744b032fc6527e5",
+    "place": "Zurich",
+    "zoom": 12,
+    "state": "cold",
+    "repetitions": 1,
+    "observations": 1,
+    "sourceRequests": 0,
+    "metrics": {
+      "fineFogMs": {
+        "measured": 1,
+        "missing": 0,
+        "median": 266,
+        "p95": 266,
+        "max": 266
+      },
+      "firstFullResolutionImageryMs": {
+        "measured": 1,
+        "missing": 0,
+        "median": 138,
+        "p95": 138,
+        "max": 138
+      },
+      "combinedMs": {
+        "measured": 1,
+        "missing": 0,
+        "median": 266,
+        "p95": 266,
+        "max": 266
+      },
+      "stripReadyMs": {
+        "measured": 1,
+        "missing": 0,
+        "median": 266,
+        "p95": 266,
+        "max": 266
+      },
+      "viewportReadyMs": {
+        "measured": 1,
+        "missing": 0,
+        "median": 266,
+        "p95": 266,
+        "max": 266
+      },
+      "settledAfterReleaseMs": {
+        "measured": 1,
+        "missing": 0,
+        "median": 62,
+        "p95": 62,
+        "max": 62
+      },
+      "frameP95Ms": {
+        "measured": 1,
+        "missing": 0,
+        "median": 16.799999999999727,
+        "p95": 16.799999999999727,
+        "max": 16.799999999999727
+      },
+      "trackedBytes": {
+        "measured": 1,
+        "missing": 0,
+        "median": 6207817,
+        "p95": 6207817,
+        "max": 6207817
+      },
+      "textureBytes": {
+        "measured": 1,
+        "missing": 0,
+        "median": 5242880,
+        "p95": 5242880,
+        "max": 5242880
+      }
+    },
+    "routeTransferBytes": {
+      "measured": 1,
+      "missing": 0,
+      "median": 398536,
+      "p95": 398536,
+      "max": 398536
+    },
+    "worstFineEdgePerRouteMs": {
+      "measured": 1,
+      "missing": 0,
+      "median": 266,
+      "p95": 266,
+      "max": 266
+    },
+    "directCombinedMs": {
+      "measured": 1,
+      "missing": 0,
+      "median": 1049.7000000029802,
+      "p95": 1049.7000000029802,
+      "max": 1049.7000000029802
+    }
+  }
+]

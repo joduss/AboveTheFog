@@ -1,8 +1,9 @@
 import {defineConfig} from 'vite';
 
-export default defineConfig({
+export default defineConfig(({mode}) => ({
   // Versioned nationwide terrain packets are ordinary static hosting assets.
-  publicDir: 'static',
+  publicDir: mode==='comparison' ? false : 'static',
+  build: {outDir:mode==='comparison' ? 'dist-comparison' : 'dist'},
   plugins: [{name: 'prepared-assets', configureServer(server) {
     server.middlewares.use('/prepared', async (req, res, next) => {
       const {createReadStream} = await import('node:fs');
@@ -13,16 +14,13 @@ export default defineConfig({
       try {const info=await stat(file); if(!info.isFile()) return next(); res.setHeader('Content-Type','application/octet-stream'); createReadStream(file).pipe(res);} catch {next();}
     });
   }, async closeBundle() {
-    const {cp, mkdir, readFile} = await import('node:fs/promises');
-    await mkdir('dist/prepared',{recursive:true});
-    // Native fixtures and full manifests stay local; only delivery assets are shipped.
-    const index = JSON.parse(await readFile('src/terrain/prepared-index.json','utf8'));
-    for (const area of index.areas) {
-      let manifest;
-      try {manifest=JSON.parse(await readFile(`public/prepared/${area.id}/manifest.json`,'utf8'));}
-      catch(error) {if((error as NodeJS.ErrnoException).code==='ENOENT') {console.warn(`Prepared assets absent for ${area.id}; that coverage will show unavailable. Run scripts/prepare_bands.py.`); continue;} throw error;}
-      if(manifest.fingerprint!==area.fingerprint) throw Error(`Prepared index/assets differ for ${area.id}; regenerate and rebuild.`);
-      for(const format of ['raster','vector']) await cp(`public/prepared/${area.id}/${format}`,`dist/prepared/${area.id}/${format}`,{recursive:true});
+    if (mode!=='comparison') return;
+    const {cp, readFile} = await import('node:fs/promises');
+    const {areas} = JSON.parse(await readFile('src/terrain/prepared-index.json','utf8'));
+    for (const {id} of areas) for (const format of ['raster','vector']) {
+      const path = `prepared/${id}/${format}`;
+      try {await cp('public/'+path,'dist-comparison/'+path,{recursive:true});}
+      catch (error) {if ((error as NodeJS.ErrnoException).code!=='ENOENT') throw error;}
     }
   }}],
-});
+}));

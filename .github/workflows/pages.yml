@@ -1,0 +1,50 @@
+name: Publish AboveTheFog
+on:
+  workflow_dispatch:
+    inputs:
+      terrain_run:
+        description: Successful national terrain preparation run ID
+        required: true
+permissions:
+  actions: read
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - uses: actions/download-artifact@v4
+        with:
+          name: national-terrain
+          run-id: ${{ inputs.terrain_run }}
+          github-token: ${{ github.token }}
+      - uses: actions/configure-pages@v5
+        id: pages
+      - run: npm ci
+      - run: npm test
+      - run: npm run build -- --base "$SITE_BASE/"
+        env:
+          SITE_BASE: ${{ steps.pages.outputs.base_path }}
+      - name: Check published size
+        run: |
+          test ! -d dist/prepared
+          test -z "$(find dist -type f \( -iname '*.tif' -o -iname '*.tiff' -o -name 'elevation.worker-*.js' \) -print -quit)"
+          bytes=$(du --apparent-size -sb dist | cut -f1)
+          echo "Published site bytes $bytes" >> "$GITHUB_STEP_SUMMARY"
+          test "$bytes" -lt 1000000000
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+      - uses: actions/deploy-pages@v4
+        id: deployment

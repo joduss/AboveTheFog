@@ -2,8 +2,8 @@ import {Worker} from 'node:worker_threads';
 import {readdirSync} from 'node:fs';
 import {pathToFileURL} from 'node:url';
 import assert from 'node:assert/strict';
-const file=readdirSync('dist/assets').find(f=>f.startsWith('elevation.worker-'));
-const url=pathToFileURL(`${process.cwd()}/dist/assets/${file}`).href;
+const file=readdirSync('dist-comparison/assets').find(f=>f.startsWith('elevation.worker-'));
+const url=pathToFileURL(`${process.cwd()}/dist-comparison/assets/${file}`).href;
 async function run(mode) {
  const worker=new Worker(`
  const {parentPort}=require('node:worker_threads');globalThis.self=globalThis;

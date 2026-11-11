@@ -1,0 +1,284 @@
+[
+  {
+    "build": "/OutOfTheFog/assets/index-Bkgcn_4k.js",
+    "dataset": "6f2712d5fbfafa67d6960fe6016e5ee5c3ccf624c667d65722cde6c482f90d93",
+    "place": "Fribourg",
+    "zoom": 16,
+    "state": "cold",
+    "repetitions": 30,
+    "observations": 360,
+    "sourceRequests": 0,
+    "metrics": {
+      "fineFogMs": {
+        "measured": 360,
+        "missing": 0,
+        "median": 8,
+        "p95": 24,
+        "max": 44
+      },
+      "firstFullResolutionImageryMs": {
+        "measured": 360,
+        "missing": 0,
+        "median": 41,
+        "p95": 89,
+        "max": 142
+      },
+      "combinedMs": {
+        "measured": 360,
+        "missing": 0,
+        "median": 41,
+        "p95": 89,
+        "max": 142
+      },
+      "stripReadyMs": {
+        "measured": 360,
+        "missing": 0,
+        "median": 41,
+        "p95": 191,
+        "max": 265
+      },
+      "viewportReadyMs": {
+        "measured": 360,
+        "missing": 0,
+        "median": 41,
+        "p95": 191,
+        "max": 265
+      },
+      "settledAfterReleaseMs": {
+        "measured": 360,
+        "missing": 0,
+        "median": 3,
+        "p95": 37,
+        "max": 56
+      },
+      "frameP95Ms": {
+        "measured": 360,
+        "missing": 0,
+        "median": 16.700000000000728,
+        "p95": 16.800000000000182,
+        "max": 16.800000000000182
+      },
+      "trackedBytes": {
+        "measured": 360,
+        "missing": 0,
+        "median": 13154674,
+        "p95": 21870405,
+        "max": 21870405
+      },
+      "textureBytes": {
+        "measured": 360,
+        "missing": 0,
+        "median": 11272192,
+        "p95": 19922944,
+        "max": 19922944
+      }
+    },
+    "routeTransferBytes": {
+      "measured": 30,
+      "missing": 0,
+      "median": 139414,
+      "p95": 139414,
+      "max": 139414
+    },
+    "worstFineEdgePerRouteMs": {
+      "measured": 30,
+      "missing": 0,
+      "median": 25,
+      "p95": 40,
+      "max": 44
+    },
+    "directCombinedMs": {
+      "measured": 29,
+      "missing": 1,
+      "median": 747,
+      "p95": 814.9000000059605,
+      "max": 1046.6000000014901
+    }
+  },
+  {
+    "build": "/OutOfTheFog/assets/index-Bkgcn_4k.js",
+    "dataset": "6f2712d5fbfafa67d6960fe6016e5ee5c3ccf624c667d65722cde6c482f90d93",
+    "place": "Fribourg",
+    "zoom": 16,
+    "state": "http-warm",
+    "repetitions": 30,
+    "observations": 360,
+    "sourceRequests": 0,
+    "metrics": {
+      "fineFogMs": {
+        "measured": 360,
+        "missing": 0,
+        "median": 8,
+        "p95": 25,
+        "max": 381
+      },
+      "firstFullResolutionImageryMs": {
+        "measured": 360,
+        "missing": 0,
+        "median": 8,
+        "p95": 25,
+        "max": 381
+      },
+      "combinedMs": {
+        "measured": 360,
+        "missing": 0,
+        "median": 8,
+        "p95": 25,
+        "max": 381
+      },
+      "stripReadyMs": {
+        "measured": 360,
+        "missing": 0,
+        "median": 42,
+        "p95": 246,
+        "max": 381
+      },
+      "viewportReadyMs": {
+        "measured": 360,
+        "missing": 0,
+        "median": 42,
+        "p95": 246,
+        "max": 381
+      },
+      "settledAfterReleaseMs": {
+        "measured": 360,
+        "missing": 0,
+        "median": 37,
+        "p95": 43,
+        "max": 102
+      },
+      "frameP95Ms": {
+        "measured": 360,
+        "missing": 0,
+        "median": 16.700000000000273,
+        "p95": 16.800000000000182,
+        "max": 16.800000000000182
+      },
+      "trackedBytes": {
+        "measured": 360,
+        "missing": 0,
+        "median": 13154674,
+        "p95": 21870405,
+        "max": 21870405
+      },
+      "textureBytes": {
+        "measured": 360,
+        "missing": 0,
+        "median": 11272192,
+        "p95": 19922944,
+        "max": 19922944
+      }
+    },
+    "routeTransferBytes": {
+      "measured": 30,
+      "missing": 0,
+      "median": 0,
+      "p95": 0,
+      "max": 0
+    },
+    "worstFineEdgePerRouteMs": {
+      "measured": 30,
+      "missing": 0,
+      "median": 26,
+      "p95": 247,
+      "max": 381
+    },
+    "directCombinedMs": {
+      "measured": 30,
+      "missing": 0,
+      "median": 329.70000000298023,
+      "p95": 371.3999999985099,
+      "max": 377.5
+    }
+  },
+  {
+    "build": "/OutOfTheFog/assets/index-Bkgcn_4k.js",
+    "dataset": "6f2712d5fbfafa67d6960fe6016e5ee5c3ccf624c667d65722cde6c482f90d93",
+    "place": "Fribourg",
+    "zoom": 16,
+    "state": "decoded-revisit",
+    "repetitions": 30,
+    "observations": 360,
+    "sourceRequests": 0,
+    "metrics": {
+      "fineFogMs": {
+        "measured": 360,
+        "missing": 0,
+        "median": 6,
+        "p95": 6,
+        "max": 9
+      },
+      "firstFullResolutionImageryMs": {
+        "measured": 360,
+        "missing": 0,
+        "median": 6,
+        "p95": 6,
+        "max": 9
+      },
+      "combinedMs": {
+        "measured": 360,
+        "missing": 0,
+        "median": 6,
+        "p95": 6,
+        "max": 9
+      },
+      "stripReadyMs": {
+        "measured": 360,
+        "missing": 0,
+        "median": 6,
+        "p95": 6,
+        "max": 9
+      },
+      "viewportReadyMs": {
+        "measured": 360,
+        "missing": 0,
+        "median": 6,
+        "p95": 6,
+        "max": 9
+      },
+      "settledAfterReleaseMs": {
+        "measured": 360,
+        "missing": 0,
+        "median": 4,
+        "p95": 6,
+        "max": 19
+      },
+      "frameP95Ms": {
+        "measured": 360,
+        "missing": 0,
+        "median": 16.700000000000728,
+        "p95": 16.80000000000109,
+        "max": 16.80000000000109
+      },
+      "trackedBytes": {
+        "measured": 360,
+        "missing": 0,
+        "median": 23192556,
+        "p95": 23192556,
+        "max": 23192556
+      },
+      "textureBytes": {
+        "measured": 360,
+        "missing": 0,
+        "median": 19922944,
+        "p95": 19922944,
+        "max": 19922944
+      }
+    },
+    "routeTransferBytes": {
+      "measured": 30,
+      "missing": 0,
+      "median": 0,
+      "p95": 0,
+      "max": 0
+    },
+    "worstFineEdgePerRouteMs": {
+      "measured": 30,
+      "missing": 0,
+      "median": 6,
+      "p95": 7,
+      "max": 9
+    },
+    "directCombinedMs": null
+  }
+]

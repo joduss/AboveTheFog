@@ -4,7 +4,7 @@ import type {TileResult} from './workerPool';
 export {BAND_NODATA} from './bands';
 import {decodeBands} from './bands';
 import index from './prepared-index.json';
-export const preparedMode = new URLSearchParams(location.search).get('prepared') ?? 'national';
+export const preparedMode = (import.meta.env.DEV || import.meta.env.MODE==='comparison') ? new URLSearchParams(location.search).get('prepared') ?? 'national' : 'national';
 // Pilot rasters and vectors remain available only for the explicit comparison.
 export const nationalMode = !['off', 'pilot', 'vector'].includes(preparedMode);
 export const preparedAreas = index.areas.map(area => ({...area, bounds: area.coverage as Bounds}));

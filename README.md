@@ -1,6 +1,6 @@
-# Swiss Fog Map — prepared elevation and nationwide runtime coverage
+# AboveTheFog
 
-React, TypeScript, Vite and OpenLayers. Explore a manual altitude threshold across Switzerland. **This is not a fog forecast.** No application backend or deployment is required. The bounded prepared comparison assets use an optional offline Python preparation step.
+The national map compares a selected altitude with prepared Swiss terrain. Close views sample a 4 m LV95 grid in 10 m elevation bands. Equality stays clear and amber marks NoData or unavailable terrain.
 
 ## Run
 
@@ -11,19 +11,27 @@ npm ci
 npm run dev
 ```
 
-Open the local URL printed by Vite. Prepared Fribourg and Zermatt views load static numeric band tiles; outside prepared coverage, Internet access is required for runtime catalogue queries and COG ranges. Basemaps require Internet in both cases. Generate the new bounded assets as described in [prepared elevation](docs/prepared-elevation.md); absent prepared assets remain visibly unavailable. Historical `public/data` experiments are excluded from the build.
+The normal map loads static terrain from the site and background imagery from swisstopo. Zooms 7–12 use regional overviews. Zooms 13–19 sample the national native grid at the requested display resolution. Altitude changes update the shader.
 
-## Navigation fixes
+The **Prepare national terrain** workflow produces the versioned data artifact. **Publish AboveTheFog** takes its run ID, verifies the files and builds with the Pages repository base path. For local builds, restore that artifact at the repository root or run the preparation commands in the [national release notes](docs/national-release.md).
+
+Developer mode supports `?prepared=pilot`, `?prepared=vector` and `?prepared=off`. Run `npm run build:comparison` for a separate comparison bundle.
+
+## Historical developer comparisons
+
+The following measurements and source-selection rules describe the pilot and live developer modes.
+
+### Navigation fixes
 
 Fribourg prepared coverage now includes a roughly **14 × 14 km** area using existing local sources. A bounded decoded-tile cache prefetches a one-tile margin with two background slots. Loaded terrain and previews stay visible while dragging, and loading text no longer resizes the map. The measured pan route that previously took 16–37 seconds now settles in 0.7–0.8 seconds including the gesture. This does not establish nationwide fast detail coverage: remote TIFF acquisition still costs more outside the prepared areas. See [navigation results and verification](docs/navigation-fixes.md).
 
-## Prepared comparison areas
+### Prepared comparison areas
 
 The default numeric raster path uses an aligned **4 m LV95 grid** and **10 m height bands** in Fribourg and Zermatt. The controls use 10 m thresholds; tapping prepared terrain shows a half-open height range. Equality stays clear. Whole delivery tiles contained inside the evaluation footprints use prepared data from z13–17 (enlarged above z17); crossing tiles and wider views retain runtime sampling. The status identifies prepared, runtime and mixed coverage. Failed prepared loads stay amber, including with dimming off.
 
 The measured cold production views completed in **722 ms (Fribourg)** and **775 ms (Zermatt)** on the documented desktop, compared with 12.5 s and 14.7 s for runtime COGs. See [format contract, generation instructions, benchmarks and limits](docs/prepared-elevation.md). These are single desktop runs, not physical-phone claims. `?prepared=vector` selects the comparison format; `?prepared=off` forces the current COG pipeline.
 
-## Runtime elevation by zoom
+### Runtime elevation by zoom
 
 - **Zoom 7–14:** swissALTIRegio, a nationwide 10 m grid with existing reduced-resolution COG images. The browser selects a level suitable for the map scale (approximately 10, 40, 80, 160, 320 or 640 m). At the initial national view, approximately 320 m samples are typical; screen size changes the initial zoom.
 - **Zoom 15+:** runtime STAC discovery of nearby 2 m swissALTI3D files, selecting the latest eligible edition per square. Elevation display tiles stop refining at zoom 17; further zoom enlarges those samples.
@@ -33,7 +41,7 @@ The wide view is an **approximation**, not a conservative minimum of all underly
 
 Amber identifies pending, missing or failed elevation, including outside the supported rectangle. Turning dimming off retains amber. Failed detail does not silently fall back to coarse data. Use **Retry elevation** to clear the current rendering cache and restart workers. The supported rectangle encloses Switzerland (5.95–10.5° E, 45.8–47.85° N), so some neighboring territory is visible too. Heights are LN02 within Switzerland; swissALTIRegio retains original vertical references in foreign areas.
 
-## Downloads and resource limits
+### Downloads and resource limits
 
 The roughly 10.1 GB swissALTIRegio COG is **not downloaded in full**. Only required headers and compressed blocks are requested with single HTTP byte ranges. HTTP 200 in response to a range request is rejected before reading the body. Range requests time out after 20 seconds and worker tile jobs after 60 seconds. Source changes are discovered at runtime; no offline asset inventory is used.
 

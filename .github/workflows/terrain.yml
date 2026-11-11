@@ -1,0 +1,48 @@
+name: Prepare national terrain
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install -r scripts/requirements.txt
+      - uses: actions/cache/restore@v4
+        with:
+          path: |
+            data/source/national-bands/*/*.gz
+            data/source/national-bands/native-jobs
+            static/terrain
+            src/terrain/national-index
+          key: terrain-${{ hashFiles('scripts/national/*.py', 'scripts/national/*.gz') }}-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: |
+            terrain-${{ hashFiles('scripts/national/*.py', 'scripts/national/*.gz') }}-
+      - run: python scripts/national/ensure_overviews.py
+      - run: python scripts/national/detail_grid.py --squares-only --threads 6
+      - name: Generate independent page ranges
+        run: |
+          seq 0 7 | xargs -P 2 -I '{}' python scripts/national/native_release.py --shards 8 --shard '{}'
+          python scripts/national/native_release.py --shards 8 --merge
+          python scripts/national/verify_native_grid.py
+      - uses: actions/cache/save@v4
+        if: always() && !cancelled()
+        with:
+          path: |
+            data/source/national-bands/*/*.gz
+            data/source/national-bands/native-jobs
+            static/terrain
+            src/terrain/national-index
+          key: terrain-${{ hashFiles('scripts/national/*.py', 'scripts/national/*.gz') }}-${{ github.run_id }}-${{ github.run_attempt }}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: national-terrain
+          compression-level: 0
+          path: |
+            src/terrain/native-index
+            src/terrain/national-index
+            static/terrain

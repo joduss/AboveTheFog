@@ -1,0 +1,166 @@
+[
+  {
+    "version": 1,
+    "id": "fribourg",
+    "fingerprint": "2190a6deeb4316523f3f051fc932be8a6bff385823e0c0135f508073c28ed023",
+    "coverage": [
+      793722.10171327,
+      5907053.5458784215,
+      799837.063976083,
+      5913168.5081412345
+    ],
+    "nativeBounds": [
+      2576440,
+      1181568,
+      2580652,
+      1185768
+    ],
+    "nativeShape": [
+      1050,
+      1053
+    ],
+    "nativeCRS": "EPSG:2056",
+    "nativeOrigin": [
+      0,
+      0
+    ],
+    "gridMetres": 4,
+    "bandMetres": 10,
+    "nodata": -32768,
+    "encoding": "little-endian signed int16 floor(height/10); -32768 missing",
+    "verticalDatum": "LN02 EPSG:5728",
+    "sampling": "nearest; pixel centres",
+    "deliveryCRS": "EPSG:3857",
+    "minZoom": 13,
+    "maxZoom": 17,
+    "tileSize": 256,
+    "sourceYears": [
+      2021
+    ],
+    "sourceBytes": 26733386,
+    "sourceCount": 25,
+    "nativeValid": 1105650,
+    "sizes": {
+      "raster": 633634,
+      "vector": 2641270
+    },
+    "stageSeconds": {
+      "raster": 7.252619738690555,
+      "vector": 7.0039245744701475
+    },
+    "generationSeconds": 23.694908134057187,
+    "peakRSSBytes": 195756032,
+    "vectorFeatures": 17494,
+    "vectorRasterMismatchPixels": 0,
+    "comparedPixels": 35258368,
+    "overviewDisagreement": {
+      "13": {
+        "thresholdMetres": 650,
+        "comparedSubsamples": 409600,
+        "changed": 1775
+      },
+      "14": {
+        "thresholdMetres": 650,
+        "comparedSubsamples": 1638400,
+        "changed": 3954
+      },
+      "15": {
+        "thresholdMetres": 650,
+        "comparedSubsamples": 6553600,
+        "changed": 8508
+      },
+      "16": {
+        "thresholdMetres": 650,
+        "comparedSubsamples": 26214400,
+        "changed": 17775
+      },
+      "17": {
+        "thresholdMetres": 650,
+        "comparedSubsamples": 0,
+        "changed": 0
+      }
+    }
+  },
+  {
+    "version": 1,
+    "id": "zermatt",
+    "fingerprint": "a1cd88ea3052950b2932e2bd7afc923b67362e02c0e9c9356af07e2177a6451a",
+    "coverage": [
+      859763.6941516623,
+      5781085.32326445,
+      865878.6564144753,
+      5787200.285527265
+    ],
+    "nativeBounds": [
+      2622040,
+      1094820,
+      2626316,
+      1099080
+    ],
+    "nativeShape": [
+      1065,
+      1069
+    ],
+    "nativeCRS": "EPSG:2056",
+    "nativeOrigin": [
+      0,
+      0
+    ],
+    "gridMetres": 4,
+    "bandMetres": 10,
+    "nodata": -32768,
+    "encoding": "little-endian signed int16 floor(height/10); -32768 missing",
+    "verticalDatum": "LN02 EPSG:5728",
+    "sampling": "nearest; pixel centres",
+    "deliveryCRS": "EPSG:3857",
+    "minZoom": 13,
+    "maxZoom": 17,
+    "tileSize": 256,
+    "sourceYears": [
+      2024
+    ],
+    "sourceBytes": 35113880,
+    "sourceCount": 30,
+    "nativeValid": 1138485,
+    "sizes": {
+      "raster": 1170103,
+      "vector": 7969671
+    },
+    "stageSeconds": {
+      "raster": 5.592380658257753,
+      "vector": 12.416583047248423
+    },
+    "generationSeconds": 41.14128689595964,
+    "peakRSSBytes": 244203520,
+    "vectorFeatures": 65973,
+    "vectorRasterMismatchPixels": 0,
+    "comparedPixels": 35258368,
+    "overviewDisagreement": {
+      "13": {
+        "thresholdMetres": 2500,
+        "comparedSubsamples": 409600,
+        "changed": 315
+      },
+      "14": {
+        "thresholdMetres": 2500,
+        "comparedSubsamples": 1638400,
+        "changed": 703
+      },
+      "15": {
+        "thresholdMetres": 2500,
+        "comparedSubsamples": 6553600,
+        "changed": 1680
+      },
+      "16": {
+        "thresholdMetres": 2500,
+        "comparedSubsamples": 26214400,
+        "changed": 3190
+      },
+      "17": {
+        "thresholdMetres": 2500,
+        "comparedSubsamples": 0,
+        "changed": 0
+      }
+    }
+  }
+]
