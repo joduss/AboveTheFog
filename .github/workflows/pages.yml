@@ -1,5 +1,9 @@
 name: Publish AboveTheFog
 on:
+  # Register the workflow when its definition is pushed; publishing stays manual.
+  push:
+    branches: [master]
+    paths: [.github/workflows/pages.yml]
   workflow_dispatch:
     inputs:
       terrain_run:
@@ -15,6 +19,7 @@ concurrency:
   cancel-in-progress: false
 jobs:
   publish:
+    if: github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     environment:
       name: github-pages
