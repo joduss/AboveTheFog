@@ -18,6 +18,7 @@
     "test:prepared": "node tests/prepared.mjs",
     "test:prepared-browser": "node tests/prepared-browser.cjs",
     "benchmark:prepared": "node scripts/benchmark_prepared.cjs",
+    "test:map-interactions-browser": "node tests/map-interactions-browser.cjs",
     "test:navigation-browser": "node tests/navigation-browser.cjs && node tests/navigation-stability.cjs",
     "test:basemap-browser": "node tests/basemap-browser.cjs",
     "test:national-pixels-browser": "node tests/national-pixels-browser.cjs",

@@ -21,6 +21,9 @@ import Polygon, {fromExtent} from 'ol/geom/Polygon.js';
 import {Fill, Style} from 'ol/style.js';
 import {defaults} from 'ol/control/defaults.js';
 import ScaleLine from 'ol/control/ScaleLine.js';
+import {defaults as defaultInteractions} from 'ol/interaction/defaults.js';
+import {installMapNavigation} from './mapNavigation';
+import {CANTONS} from './cantons';
 import {getIntersection, isEmpty} from 'ol/extent.js';
 import {fromLonLat, transformExtent} from 'ol/proj.js';
 import {ComparisonWorkers} from './terrain/comparisonWorkers';
@@ -47,8 +50,10 @@ export function createTerrainMap(target: HTMLElement, callbacks: Callbacks) {
   const base = createBasemap();
   const map = new Map({target, layers: [base, coverage],
     controls: defaults({attributionOptions: {collapsible: false}}).extend([new ScaleLine()]),
-    view: new View({center: fromLonLat([8.23, 46.8]), zoom: 8, minZoom: 7, maxZoom: 19, constrainResolution: true}),
+    interactions: defaultInteractions({mouseWheelZoom: false}),
+    view: new View({center: fromLonLat([8.23, 46.8]), zoom: 8, minZoom: 7, maxZoom: 19}),
   });
+  const disposeNavigation = installMapNavigation(map);
   const background = watchBasemap(map, base, callbacks.basemapError);
   const national = createNationalTerrain();
   const grid = createXYZ({minZoom: 7, maxZoom: nationalMode ? NATIONAL_MAX_ZOOM : MAX_ZOOM, tileSize: 256});
@@ -401,14 +406,19 @@ export function createTerrainMap(target: HTMLElement, callbacks: Callbacks) {
   });
   return {
     update(nextAltitude: number, nextEnabled: boolean) {altitude = nextAltitude; enabled = nextEnabled; vectors?.update(altitude,enabled); preview.update(altitude, enabled); elevation?.updateStyleVariables({altitude, enabled: enabled ? 1 : 0});},
-    recenter() {map.getView().fit(extent, {padding: [30, 30, 30, 30]});},
-    goTo(place: string) {if (PLACES[place]) {map.getView().cancelAnimations(); map.getView().setCenter(fromLonLat(PLACES[place])); map.getView().setZoom(15);}},
+    recenter() {map.getView().cancelAnimations(); map.getView().fit(extent, {padding: [30, 30, 30, 30]});},
+    goToCanton(code: string) {
+      const canton = CANTONS.find(canton => canton.code === code);
+      if (!canton) return;
+      map.getView().cancelAnimations();
+      map.getView().fit(transformExtent(canton.bounds, 'EPSG:4326', 'EPSG:3857'), {padding: [30, 30, 30, 30], maxZoom: 13});
+    },
     retryBasemap: background.retry,
     retry() {
       if (fatal) {location.reload(); return;}
       epoch++; loadController.abort(); loadController = new AbortController(); bypassCache = true; national.clear(); resident.clear();prefetchQueue=[]; vectors?.retry(); preview.reset(true); workers?.dispose(); elevation?.setSource(null); elevation?.setSource(source); workers = undefined; loaded.clear(); completed.clear(); failed.clear(); pending.clear();
       signature = ''; unknown.setGeometry(new Polygon([world])); source.refresh(); currentView();
     },
-    dispose() {disposed = true; loadController.abort(); national.clear(); background.dispose(); clearTimeout(prefetchTimer);prefetchQueue=[];resident.clear();vectors?.dispose(); preview.dispose(); controller.abort(); workers?.dispose(); cancelAnimationFrame(frame); target.removeEventListener('webglcontextlost', fail, true); map.dispose();},
+    dispose() {disposed = true; disposeNavigation(); loadController.abort(); national.clear(); background.dispose(); clearTimeout(prefetchTimer);prefetchQueue=[];resident.clear();vectors?.dispose(); preview.dispose(); controller.abort(); workers?.dispose(); cancelAnimationFrame(frame); target.removeEventListener('webglcontextlost', fail, true); map.dispose();},
   };
 }

@@ -17,6 +17,14 @@ The **Prepare national terrain** workflow produces the versioned data artifact. 
 
 Developer mode supports `?prepared=pilot`, `?prepared=vector` and `?prepared=off`. Run `npm run build:comparison` for a separate comparison bundle.
 
+## Map navigation
+
+Choose **Explore a canton** to fit one of the 26 cantons, or **All Switzerland** to reset. The menu retains the selected canton; it is a navigation shortcut, not a terrain filter. Canton bounds are bundled from [swisstopo SearchServer](https://api3.geo.admin.ch/rest/services/api/SearchServer?searchText=Fribourg&type=locations&origins=kantone&sr=4326), retrieved on 12 November 2026.
+
+Drag or scroll with two fingers to pan in either direction. Pinch on a trackpad or touchscreen to zoom; Ctrl + scroll also zooms. Pinches stay anchored under the pointer and support intermediate zoom levels. Traditional line/page mouse-wheel events retain zoom behavior; pixel-based smooth mouse scrolling pans like a trackpad. Safari native gesture events are handled inside the map. Keyboard arrows, +/− and map zoom buttons remain available.
+
+Run `npm run test:map-interactions-browser` against the dev server (`MAP_URL` defaults to port 5177). Set `BROWSER_PATH` when using a system Chromium browser. The check covers every canton extent, selection/reset, diagonal scroll, anchored pinch, the Safari gesture event path, keyboard/buttons and phone layout. Physical trackpad and native Safari verification remain manual checks.
+
 ## Historical developer comparisons
 
 The following measurements and source-selection rules describe the pilot and live developer modes.
@@ -35,7 +43,7 @@ The measured cold production views completed in **722 ms (Fribourg)** and **775 
 
 - **Zoom 7–14:** swissALTIRegio, a nationwide 10 m grid with existing reduced-resolution COG images. The browser selects a level suitable for the map scale (approximately 10, 40, 80, 160, 320 or 640 m). At the initial national view, approximately 320 m samples are typical; screen size changes the initial zoom.
 - **Zoom 15+:** runtime STAC discovery of nearby 2 m swissALTI3D files, selecting the latest eligible edition per square. Elevation display tiles stop refining at zoom 17; further zoom enlarges those samples.
-- Map zooms settle at whole levels. Between levels, elevation selects the coarser level to avoid excess work. The status and resolution label identify the current source.
+- Map gestures allow continuous zoom levels. Between levels, elevation selects the coarser level to avoid excess work. The status and resolution label identify the current source.
 
 The wide view is an **approximation**, not a conservative minimum of all underlying 2 m terrain. The shader compares the sampled height with the selected altitude; equality stays clear. Small valleys/ridges can disappear and boundaries may change at resolution or source transitions. This intentionally replaces the old Fribourg minimum/maximum pyramid semantics following the request for lower-resolution national coverage. No purple mixed category is used.
 
@@ -77,7 +85,7 @@ Use `MAP_URL` to target a different local server. Browser checks cover source sw
 
 ## Structure
 
-- `src/main.tsx`: controls, source-resolution explanation and location shortcuts.
+- `src/main.tsx`: controls, source-resolution explanation and the 26-canton picker.
 - `src/terrainMap.ts`: OpenLayers rendering, coverage mask, shader variables and lifecycle.
 - `src/terrain/elevation.worker.ts`: runtime catalogue discovery, bounded COG ranges, decoding and nearest-neighbor coordinate sampling.
 - `src/terrain/workerPool.ts`: two-worker scheduling and disposal.

@@ -13,7 +13,7 @@ const fs=require('node:fs');
   await page.getByTitle('Zoom in',{exact:true}).click();
   await ready(); console.log('National view ready after zooming during initial loading');
   assert.match(await page.getByRole('status').innerText(),/swissALTIRegio/);
-  await page.getByRole('combobox').selectOption('Fribourg');
+  await page.goto((process.env.MAP_URL || 'http://127.0.0.1:5174')+'/?debugTiles&prepared=off&place=Fribourg');
   await page.waitForFunction(()=>document.querySelector('[role=status]').textContent.includes('swissALTI3D'));await ready();
   assert.match(await page.getByRole('status').innerText(),/swissALTI3D/);
   console.log('Detail view ready');

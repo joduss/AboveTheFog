@@ -20,7 +20,15 @@ const assert=require('node:assert/strict');
   const url=new URL(process.env.MAP_URL||'http://127.0.0.1:5176');url.searchParams.set('prepared','off');
   await page.goto(url.href);
   const ready=()=>page.waitForFunction(()=>document.querySelector('[role=status]').textContent.includes('· ready'),{},{timeout:45000});
-  const city=async name=>{await page.getByRole('combobox').selectOption(name);await page.waitForFunction(()=>document.querySelector('[role=status]').textContent.includes('swissALTI3D'));};
+  const city=async name=>{
+   await page.getByRole('combobox').selectOption({Fribourg:'FR',Zurich:'ZH',Geneva:'GE'}[name]);
+   await page.waitForTimeout(100); // Let the fitted canton replace the previous detail status.
+   for(let i=0;i<10;i++) {
+    if((await page.getByRole('status').textContent()).includes('swissALTI3D'))return;
+    await page.getByTitle('Zoom in',{exact:true}).click();await page.waitForTimeout(350);
+   }
+   throw Error('Canton zoom must reach detailed terrain');
+  };
   await page.waitForFunction(()=>window.tileJobs.length>0);
   await page.getByTitle('Zoom in',{exact:true}).click();
   await ready();

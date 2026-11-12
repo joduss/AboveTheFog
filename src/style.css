@@ -12,3 +12,6 @@
   .map-footer>span:first-child{min-width:0;max-height:2.8em;overflow:auto}
 }
 @media(min-width:701px) and (max-width:900px){.map-toolbar{height:108px;flex-basis:108px}}
+.place-picker{margin-bottom:20px}.place-picker select:focus-visible{outline:3px solid #cf983a;outline-offset:3px}
+.map-help{margin:0;padding:8px 20px;background:#fbfcf8;color:#526b5c;font-size:11px;line-height:1.5;border-top:1px solid #e5e9e1;flex-shrink:0}
+@media(max-width:700px){.place-picker{margin-bottom:14px}.map-help{padding:8px 12px}}

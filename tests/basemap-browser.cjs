@@ -16,11 +16,11 @@ const success = Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0l
       return route.abort();
     });
     // Keep one visible tile broken and let its neighbour recover automatically.
-    const persistent = '7/66/45', transient = '7/67/45';
-    failures.set(persistent, Infinity);
-    failures.set(transient, 1);
+    let persistent, transient;
     await page.route('https://wmts.geo.admin.ch/**', route => {
       const key = new URL(route.request().url()).pathname.split('/').slice(-3).join('/').replace('.jpeg', '');
+      if (!persistent) {persistent = key; failures.set(key, Infinity);}
+      else if (!transient && key !== persistent) {transient = key; failures.set(key, 1);}
       const count = (attempts.get(key) || 0) + 1;
       attempts.set(key, count);
       return count <= (failures.get(key) || 0)
@@ -38,7 +38,7 @@ const success = Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0l
     assert.deepEqual(remoteTerrain, [], 'National startup must use bundled overview samples');
     // Changing views clears the warning. Returning retries the failed tile; good
     // neighbours stay resident even when the user requests another recovery.
-    await page.getByRole('combobox').selectOption('Fribourg');
+    await page.getByRole('combobox').selectOption('FR');
     await warning.waitFor({state: 'hidden'});
     await page.getByRole('button', {name: 'Switzerland ↗', exact: true}).click();
     await warning.waitFor();
